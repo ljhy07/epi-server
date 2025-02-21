@@ -1,0 +1,54 @@
+type Query {
+    getAllUser: [UserQueryResponse],
+    getUserById(userId: Int): UserQueryResponse,
+    getUserByAccessToken(accessToken: String): UserQueryResponse
+
+}
+
+type Mutation {
+    createUser(userCreateInput: UserCreateInput): UserResponse
+    updateUser(userUpdateInput: UserUpdateInput): UserResponse
+    updateUserPassword(userId: Int, password: String): UserResponse
+    deleteUser(userDeleteInput: UserDeleteInput): UserResponse
+}
+
+type User {
+    id: ID!
+    name: String
+    password: String
+    email: String
+    role: Role
+}
+
+enum Role {
+    Store,
+    User
+}
+
+type UserQueryResponse {
+    id: ID!
+    name: String!
+    email: String!
+    role: String!
+}
+
+input UserCreateInput {
+    name: String
+    password: String
+    email: String
+    role: Role
+}
+
+input UserUpdateInput {
+    name: String
+    email: String
+    role: Role
+}
+
+input UserDeleteInput {
+    id: ID!
+}
+
+type UserResponse {
+    id: ID!
+}
