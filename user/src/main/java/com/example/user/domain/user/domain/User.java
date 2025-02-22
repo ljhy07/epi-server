@@ -4,6 +4,7 @@ import com.example.user.domain.user.domain.value.Role;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import lombok.AccessLevel;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -25,5 +26,13 @@ public class User {
     private String email;
 
     private Role role;
+
+    @Builder(builderMethodName = "userCreateBuilder")
+    public User(String name, String password, String email, Role role) {
+        this.name = name;
+        this.password = password;
+        this.email = email;
+        this.role = role;
+    }
 
 }

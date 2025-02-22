@@ -12,4 +12,8 @@ public enum Role {
     User("ROLE_USER");
 
     private final String role;
+
+    public String getValue() {
+        return role;
+    }
 }
