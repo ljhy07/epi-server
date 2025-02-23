@@ -6,10 +6,10 @@ type Query {
 }
 
 type Mutation {
-    createUser(userCreateInput: UserCreateInput): UserResponse
-    updateUser(userUpdateInput: UserUpdateInput): UserResponse
-    updateUserPassword(userId: Int, password: String): UserResponse
-    deleteUser(userDeleteInput: UserDeleteInput): UserResponse
+    createUser(userCreateInput: UserCreateInput): UserMutationResponse
+    updateUser(userUpdateInput: UserUpdateInput): UserMutationResponse
+    updateUserPassword(userPasswordUpdateInput: UserPasswordUpdateInput): UserMutationResponse
+    deleteUser(userDeleteInput: UserDeleteInput): UserMutationResponse
 }
 
 type User {
@@ -39,15 +39,22 @@ input UserCreateInput {
 }
 
 input UserUpdateInput {
+    accessToken: String
     name: String
     email: String
     role: Role
 }
 
-input UserDeleteInput {
-    id: ID!
+input UserPasswordUpdateInput {
+    userId: Int
+    password: String
 }
 
-type UserResponse {
+input UserDeleteInput {
+    id: ID!
+    accessToken: String
+}
+
+type UserMutationResponse {
     id: ID!
 }
