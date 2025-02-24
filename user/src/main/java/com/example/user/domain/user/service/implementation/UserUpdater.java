@@ -2,6 +2,8 @@ package com.example.user.domain.user.service.implementation;
 
 import com.example.user.domain.user.domain.User;
 import com.example.user.domain.user.domain.repository.UserRepository;
+import com.example.user.domain.user.domain.value.Role;
+import com.example.user.domain.user.presentation.dto.req.UserUpdateInput;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -11,11 +13,17 @@ public class UserUpdater {
 
     private final UserRepository userRepository;
 
-    public User update(User updatableUser, User user) {
+    public User update(User updatableUser, UserUpdateInput user) {
+        Role role = switch (user.Role()) {
+            case "Store" -> Role.Store;
+            case "User" -> Role.User;
+            default -> null;
+        };
+
         updatableUser.userUpdateBuilder()
-                .name(user.getName())
-                .email(user.getEmail())
-                .role(user.getRole())
+                .name(user.name())
+                .email(user.email())
+                .role(role)
                 .build();
 
         return userRepository.save(updatableUser);
