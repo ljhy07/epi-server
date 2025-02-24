@@ -35,4 +35,16 @@ public class User {
         this.role = role;
     }
 
+    @Builder(builderMethodName = "userUpdateBuilder")
+    public User(String name, String email, Role role) {
+        this.name = name;
+        this.email = email;
+        this.role = role;
+    }
+
+    @Builder(builderMethodName = "userPasswordUpdateBuilder")
+    public User(String password) {
+        this.password = password;
+    }
+
 }
