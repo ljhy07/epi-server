@@ -4,7 +4,7 @@ import com.example.user.domain.user.presentation.dto.req.UserCreateInput;
 import com.example.user.domain.user.presentation.dto.req.UserDeleteInput;
 import com.example.user.domain.user.presentation.dto.req.UserPasswordUpdateInput;
 import com.example.user.domain.user.presentation.dto.req.UserUpdateInput;
-import com.example.user.domain.user.presentation.dto.res.UserMutationResponse;
+import com.example.user.domain.user.presentation.dto.res.UserCommandResponse;
 import com.example.user.domain.user.presentation.dto.res.UserQueryResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.graphql.data.method.annotation.Argument;
@@ -38,28 +38,28 @@ public class UserController {
     }
 
     @MutationMapping
-    public UserMutationResponse createUser(
+    public UserCommandResponse createUser(
             @Argument UserCreateInput userCreateInput
     ){
 
     }
 
     @MutationMapping
-    public UserMutationResponse updateUser(
+    public UserCommandResponse updateUser(
             @Argument UserUpdateInput userUpdateInput
     ){
 
     }
 
     @MutationMapping
-    public UserMutationResponse updateUserPassword(
+    public UserCommandResponse updateUserPassword(
             @Argument UserPasswordUpdateInput userPasswordUpdateInput
     ){
 
     }
 
     @MutationMapping
-    public UserMutationResponse deleteUser(
+    public UserCommandResponse deleteUser(
             @Argument UserDeleteInput userDeleteInput
     ){
 

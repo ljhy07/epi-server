@@ -1,6 +1,6 @@
 package com.example.user.domain.user.presentation.dto.res;
 
-public record UserMutationResponse(
+public record UserCommandResponse(
         Long id
 ) {
 }
