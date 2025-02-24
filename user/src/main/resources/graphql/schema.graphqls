@@ -46,12 +46,11 @@ input UserUpdateInput {
 }
 
 input UserPasswordUpdateInput {
-    userId: Int
+    accessToken: String
     password: String
 }
 
 input UserDeleteInput {
-    id: ID!
     accessToken: String
 }
 
