@@ -10,6 +10,7 @@ import com.example.user.domain.user.service.implementation.UserCreator;
 import com.example.user.domain.user.service.implementation.UserDeleter;
 import com.example.user.domain.user.service.implementation.UserReader;
 import com.example.user.domain.user.service.implementation.UserUpdater;
+import com.example.user.global.security.jwt.util.JwtUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -21,6 +22,7 @@ public class CommandUserService {
     private final UserUpdater userUpdater;
     private final UserDeleter userDeleter;
     private final UserReader userReader;
+    private final JwtUtil jwtUtil;
 
     public UserCommandResponse save(
             UserCreateInput userCreateInput
@@ -35,7 +37,7 @@ public class CommandUserService {
     public UserCommandResponse update(
             UserUpdateInput userUpdateInput
     ){
-        User updatableUser = userReader.findById(jwtPayloadDecodeToUserId(userUpdateInput.accessToken()));
+        User updatableUser = userReader.findById(jwtUtil.getId(userUpdateInput.accessToken()));
         User user = userUpdater.update(updatableUser, userUpdateInput);
 
         return new UserCommandResponse(
@@ -46,7 +48,7 @@ public class CommandUserService {
     public UserCommandResponse updatePassword(
             UserPasswordUpdateInput userPasswordUpdateInput
     ){
-        User updatableUser = userReader.findById(jwtPayloadDecodeToUserId(userPasswordUpdateInput.accessToken()));
+        User updatableUser = userReader.findById(jwtUtil.getId(userPasswordUpdateInput.accessToken()));
         User user = userUpdater.updatePassword(updatableUser, userPasswordUpdateInput.password());
 
         return new UserCommandResponse(
@@ -57,7 +59,7 @@ public class CommandUserService {
     public UserCommandResponse delete(
             UserDeleteInput userDeleteInput
     ){
-        User updatableUser = userReader.findById(jwtPayloadDecodeToUserId(userDeleteInput.accessToken()));
+        User updatableUser = userReader.findById(jwtUtil.getId(userDeleteInput.accessToken()));
         User user = userDeleter.delete(updatableUser);
 
         return new UserCommandResponse(

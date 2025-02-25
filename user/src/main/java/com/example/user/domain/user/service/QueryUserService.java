@@ -3,6 +3,7 @@ package com.example.user.domain.user.service;
 import com.example.user.domain.user.domain.User;
 import com.example.user.domain.user.presentation.dto.res.UserQueryResponse;
 import com.example.user.domain.user.service.implementation.UserReader;
+import com.example.user.global.security.jwt.util.JwtUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -14,6 +15,7 @@ import java.util.List;
 public class QueryUserService {
 
     private final UserReader userReader;
+    private final JwtUtil jwtUtil;
 
     public List<UserQueryResponse> getUsers(){
         List<User> users = userReader.findAll();
@@ -47,7 +49,7 @@ public class QueryUserService {
     public UserQueryResponse getUserByAccessToken(
             String accessToken
     ){
-        User user = userReader.findById(jwtPayloadDecodeToUserId(accessToken));
+        User user = userReader.findById(jwtUtil.getId(accessToken));
 
         return new UserQueryResponse(
                 user.getId(),
