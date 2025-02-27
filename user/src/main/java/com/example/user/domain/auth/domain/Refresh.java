@@ -19,6 +19,4 @@ public class Refresh {
     private Long userId;
 
     private String refreshToken;
-
-    private String expiration;
 }
