@@ -1,0 +1,6 @@
+type Mutation {
+    createUser(userCreateInput: UserCreateInput): User
+    updateUser(userUpdateInput: UserUpdateInput): User
+    updateUserPassword(userPasswordUpdateInput: UserPasswordUpdateInput): User
+    deleteUser: User
+}
