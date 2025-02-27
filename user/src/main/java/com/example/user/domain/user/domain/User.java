@@ -1,5 +1,6 @@
 package com.example.user.domain.user.domain;
 
+import com.example.user.domain.user.domain.value.LoginType;
 import com.example.user.domain.user.domain.value.Role;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
@@ -24,6 +25,8 @@ public class User {
 
     @Email
     private String email;
+
+    private LoginType LoginType;
 
     private Role role;
 
