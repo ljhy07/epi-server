@@ -1,0 +1,3 @@
+input ReissueTokenInput {
+    RefreshToken: String
+}
