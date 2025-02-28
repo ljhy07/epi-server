@@ -12,6 +12,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.graphql.data.method.annotation.Argument;
 import org.springframework.graphql.data.method.annotation.MutationMapping;
 import org.springframework.graphql.data.method.annotation.QueryMapping;
+import org.springframework.messaging.handler.annotation.Header;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -37,7 +38,7 @@ public class UserController {
 
     @QueryMapping
     public UserQueryResponse getUserByAccessToken(
-            @Argument String accessToken
+            @Header String accessToken
     ){
         return queryUserService.getUserByAccessToken(accessToken);
     }
@@ -51,23 +52,25 @@ public class UserController {
 
     @MutationMapping
     public UserCommandResponse updateUser(
+            @Header String accessToken,
             @Argument UserUpdateInput userUpdateInput
     ){
-        return commandUserService.update(userUpdateInput);
+        return commandUserService.update(accessToken, userUpdateInput);
     }
 
     @MutationMapping
     public UserCommandResponse updateUserPassword(
+            @Header String accessToken,
             @Argument UserPasswordUpdateInput userPasswordUpdateInput
     ){
-        return commandUserService.updatePassword(userPasswordUpdateInput);
+        return commandUserService.updatePassword(accessToken, userPasswordUpdateInput);
     }
 
     @MutationMapping
     public UserCommandResponse deleteUser(
-            @Argument UserDeleteInput userDeleteInput
+            @Header String accessToken
     ){
-        return commandUserService.delete(userDeleteInput);
+        return commandUserService.delete(accessToken);
     }
 
 

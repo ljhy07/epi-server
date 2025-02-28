@@ -35,9 +35,10 @@ public class CommandUserService {
     }
 
     public UserCommandResponse update(
+            String accessToken,
             UserUpdateInput userUpdateInput
     ){
-        User updatableUser = userReader.findById(jwtUtil.getId(userUpdateInput.accessToken()));
+        User updatableUser = userReader.findById(jwtUtil.getId(accessToken));
         User user = userUpdater.update(updatableUser, userUpdateInput);
 
         return new UserCommandResponse(
@@ -46,9 +47,10 @@ public class CommandUserService {
     }
 
     public UserCommandResponse updatePassword(
+            String accessToken,
             UserPasswordUpdateInput userPasswordUpdateInput
     ){
-        User updatableUser = userReader.findById(jwtUtil.getId(userPasswordUpdateInput.accessToken()));
+        User updatableUser = userReader.findById(jwtUtil.getId(accessToken));
         User user = userUpdater.updatePassword(updatableUser, userPasswordUpdateInput.password());
 
         return new UserCommandResponse(
@@ -57,9 +59,9 @@ public class CommandUserService {
     }
 
     public UserCommandResponse delete(
-            UserDeleteInput userDeleteInput
+            String accessToken
     ){
-        User updatableUser = userReader.findById(jwtUtil.getId(userDeleteInput.accessToken()));
+        User updatableUser = userReader.findById(jwtUtil.getId(accessToken));
         User user = userDeleter.delete(updatableUser);
 
         return new UserCommandResponse(
