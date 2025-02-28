@@ -1,7 +1,7 @@
 type User {
     id: ID!
     name: String
-    password: String
     email: String
+    LoginType: String
     role: Role
 }
