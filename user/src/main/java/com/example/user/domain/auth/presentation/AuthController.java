@@ -1,7 +1,12 @@
 package com.example.user.domain.auth.presentation;
 
+import com.example.user.domain.auth.presentation.dto.req.LoginInput;
+import com.example.user.domain.auth.presentation.dto.req.OAuthLoginInput;
+import com.example.user.domain.auth.presentation.dto.req.ReissueTokenInput;
+import com.example.user.domain.auth.presentation.dto.res.Token;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.graphql.data.method.annotation.Argument;
 import org.springframework.graphql.data.method.annotation.MutationMapping;
 import org.springframework.graphql.data.method.annotation.QueryMapping;
 import org.springframework.http.HttpStatus;
@@ -14,13 +19,23 @@ import org.springframework.web.bind.annotation.RestController;
 public class AuthController {
 
     @MutationMapping
-    public void login(){}
+    public Token login(
+            @Argument LoginInput loginInput
+    ){
+
+    }
 
     @MutationMapping
-    public void oauthLogin(){}
+    public Token oauthLogin(
+            @Argument OAuthLoginInput oauthLoginInput
+    ){
+
+    }
 
     @MutationMapping
-    public void reissueToken(){
+    public Token reissueToken(
+            @Argument ReissueTokenInput reissueTokenInput
+    ){
 
     }
 
