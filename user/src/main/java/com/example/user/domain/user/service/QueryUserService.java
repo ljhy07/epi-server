@@ -3,7 +3,7 @@ package com.example.user.domain.user.service;
 import com.example.user.domain.user.domain.User;
 import com.example.user.domain.user.presentation.dto.res.UserQueryResponse;
 import com.example.user.domain.user.service.implementation.UserReader;
-import com.example.user.global.security.jwt.util.JwtUtil;
+import com.example.user.global.jwt.util.JwtUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
