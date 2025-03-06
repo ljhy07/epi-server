@@ -1,4 +1,4 @@
 input OAuthTokenLoginInput {
-    LoginType: String
-    AccessToken: String
+    loginType: String
+    accessToken: String
 }

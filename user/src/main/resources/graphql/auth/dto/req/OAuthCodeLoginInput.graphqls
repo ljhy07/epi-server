@@ -1,4 +1,4 @@
 input OAuthCodeLoginInput {
-    LoginType: String
-    Code: String
+    loginType: String
+    code: String
 }

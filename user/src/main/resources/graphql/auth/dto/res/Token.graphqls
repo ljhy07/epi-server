@@ -1,4 +1,4 @@
 type Token {
-    RefreshToken: String
-    AccessToken: String
+    refreshToken: String
+    accessToken: String
 }
