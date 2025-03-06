@@ -1,5 +1,6 @@
 extend type Mutation {
     login(loginInput: LoginInput): Token
-    oauthLogin(oauthLoginInput: OAuthLoginInput): Token
+    oauthCodeLogin(oauthLoginInput: OAuthCodeLoginInput): Token
+    oauthTokenLogin(oauthLoginInput: OAuthTokenLoginInput): Token
     reissueToken(reissueTokenInput: ReissueTokenInput): Token
 }

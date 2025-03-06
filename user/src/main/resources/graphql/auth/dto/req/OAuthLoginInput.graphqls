@@ -1,3 +1,0 @@
-input OAuthLoginInput {
-    LoginType: String
-}
