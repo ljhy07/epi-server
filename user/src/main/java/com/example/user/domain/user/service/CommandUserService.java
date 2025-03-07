@@ -33,6 +33,16 @@ public class CommandUserService {
         );
     }
 
+    public UserCommandResponse saveOAuth(
+            User user
+    ){
+        userCreator.create(user);
+
+        return new UserCommandResponse(
+                user.getId()
+        );
+    }
+
     public UserCommandResponse update(
             String accessToken,
             UserUpdateInput userUpdateInput
