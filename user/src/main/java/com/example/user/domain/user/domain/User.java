@@ -20,7 +20,7 @@ public class User {
     @Column(length = 25, nullable = false, unique = true)
     private String name;
 
-    @Column(length = 50, nullable = false)
+    @Column(length = 50)
     private String password;
 
     @Email
@@ -31,10 +31,19 @@ public class User {
     private Role role;
 
     @Builder(builderMethodName = "userCreateBuilder")
-    public User(String name, String password, String email, Role role) {
+    public User(String name, String password, String email, Role role, LoginType LoginType) {
         this.name = name;
         this.password = password;
         this.email = email;
+        this.LoginType = LoginType;
+        this.role = role;
+    }
+
+    @Builder(builderMethodName = "oauthUserCreateBuilder")
+    public User(String name, String email, Role role, LoginType loginType) {
+        this.name = name;
+        this.email = email;
+        this.LoginType = loginType;
         this.role = role;
     }
 
