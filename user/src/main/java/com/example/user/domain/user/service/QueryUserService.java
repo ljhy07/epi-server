@@ -57,4 +57,16 @@ public class QueryUserService {
                 user.getEmail()
         );
     }
+
+    public UserQueryResponse getUserByEmail(
+            String email
+    ){
+        User user = userReader.findByEmail(email);
+
+        return new UserQueryResponse(
+                user.getId(),
+                user.getName(),
+                user.getEmail()
+        );
+    }
 }
