@@ -37,10 +37,8 @@ public class UserController {
     }
 
     @QueryMapping
-    public UserQueryResponse getUserByAccessToken(
-            @Header String accessToken
-    ){
-        return queryUserService.getUserByAccessToken(accessToken);
+    public UserQueryResponse getUserByAccessToken(){
+        return queryUserService.getUserByAccessToken();
     }
 
     @MutationMapping
@@ -52,25 +50,21 @@ public class UserController {
 
     @MutationMapping
     public UserCommandResponse updateUser(
-            @Header String accessToken,
             @Argument UserUpdateInput userUpdateInput
     ){
-        return commandUserService.update(accessToken, userUpdateInput);
+        return commandUserService.update(userUpdateInput);
     }
 
     @MutationMapping
     public UserCommandResponse updateUserPassword(
-            @Header String accessToken,
             @Argument UserPasswordUpdateInput userPasswordUpdateInput
     ){
-        return commandUserService.updatePassword(accessToken, userPasswordUpdateInput);
+        return commandUserService.updatePassword(userPasswordUpdateInput);
     }
 
     @MutationMapping
-    public UserCommandResponse deleteUser(
-            @Header String accessToken
-    ){
-        return commandUserService.delete(accessToken);
+    public UserCommandResponse deleteUser(){
+        return commandUserService.delete();
     }
 
 
