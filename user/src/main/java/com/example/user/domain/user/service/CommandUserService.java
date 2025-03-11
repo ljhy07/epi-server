@@ -9,7 +9,7 @@ import com.example.user.domain.user.service.implementation.UserCreator;
 import com.example.user.domain.user.service.implementation.UserDeleter;
 import com.example.user.domain.user.service.implementation.UserReader;
 import com.example.user.domain.user.service.implementation.UserUpdater;
-import com.example.user.global.jwt.util.JwtUtil;
+import com.example.user.global.jwt.util.JwtUtils;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -21,7 +21,6 @@ public class CommandUserService {
     private final UserUpdater userUpdater;
     private final UserDeleter userDeleter;
     private final UserReader userReader;
-    private final JwtUtil jwtUtil;
 
     public UserCommandResponse save(
             UserCreateInput userCreateInput
@@ -44,10 +43,9 @@ public class CommandUserService {
     }
 
     public UserCommandResponse update(
-            String accessToken,
             UserUpdateInput userUpdateInput
     ){
-        User updatableUser = userReader.findById(jwtUtil.getId(accessToken));
+        User updatableUser = userReader.findByEmailFromSecurity();
         User user = userUpdater.update(updatableUser, userUpdateInput);
 
         return new UserCommandResponse(
@@ -56,10 +54,9 @@ public class CommandUserService {
     }
 
     public UserCommandResponse updatePassword(
-            String accessToken,
             UserPasswordUpdateInput userPasswordUpdateInput
     ){
-        User updatableUser = userReader.findById(jwtUtil.getId(accessToken));
+        User updatableUser = userReader.findByEmailFromSecurity();
         User user = userUpdater.updatePassword(updatableUser, userPasswordUpdateInput.password());
 
         return new UserCommandResponse(
@@ -67,10 +64,8 @@ public class CommandUserService {
         );
     }
 
-    public UserCommandResponse delete(
-            String accessToken
-    ){
-        User updatableUser = userReader.findById(jwtUtil.getId(accessToken));
+    public UserCommandResponse delete(){
+        User updatableUser = userReader.findByEmailFromSecurity();
         User user = userDeleter.delete(updatableUser);
 
         return new UserCommandResponse(
