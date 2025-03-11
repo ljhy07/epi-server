@@ -10,7 +10,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 @Getter
-@Entity(name = "Refresh")
+@Entity(name = "RefreshToken")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Refresh {
 
@@ -21,10 +21,10 @@ public class Refresh {
 
     private String refreshToken;
 
-    private String expiration;
+    private Integer expiration; // is_use
 
     @Builder
-    public Refresh(Long userId, String refreshToken, String expiration) {
+    public Refresh(Long userId, String refreshToken, Integer expiration) {
         this.userId = userId;
         this.refreshToken = refreshToken;
         this.expiration = expiration;
