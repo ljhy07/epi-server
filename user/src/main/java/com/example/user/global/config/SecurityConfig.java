@@ -1,10 +1,10 @@
 package com.example.user.global.config;
 
-import com.example.user.global.jwt.filter.JwtTokenFilter;
+import com.example.user.global.jwt.filter.JwtFilter;
 import com.example.user.global.exception.security.UserSecurityExceptionFilter;
 import com.example.user.global.jwt.exception.CustomAccessDeniedException;
 import com.example.user.global.jwt.exception.UnauthenticatedAccessException;
-import com.example.user.global.jwt.util.JwtTokenProvider;
+import com.example.user.global.jwt.util.JwtUtils;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
@@ -27,15 +27,13 @@ import java.util.Collections;
 @RequiredArgsConstructor
 public class SecurityConfig {
 
-    private final JwtTokenProvider jwtTokenProvider;
-
     @Bean
     public BCryptPasswordEncoder bCryptPasswordEncoder() {
         return new BCryptPasswordEncoder();
     }
 
     @Bean
-    public SecurityFilterChain filterChain(HttpSecurity http, ObjectMapper objectMapper) throws Exception {
+    public SecurityFilterChain filterChain(HttpSecurity http, ObjectMapper objectMapper, JwtUtils jwtUtils) throws Exception {
         http.csrf(AbstractHttpConfigurer::disable);
 
         http.httpBasic(AbstractHttpConfigurer::disable);
@@ -59,7 +57,7 @@ public class SecurityConfig {
 
         http
             .authorizeHttpRequests((auth) -> auth
-                .requestMatchers("/swagger-ui/**", "/v3/api-docs/**", "/favicon.ico", "/mails", "/verify", "/api/**").permitAll()
+                .requestMatchers("/graphql/**").authenticated()
                 .anyRequest().hasRole("USER"));
 
         http.exceptionHandling(exceptionHandling -> exceptionHandling
@@ -72,9 +70,9 @@ public class SecurityConfig {
 
         http.addFilterAfter(new UserSecurityExceptionFilter(objectMapper), CorsFilter.class);
 
-        http.addFilterBefore(new JwtTokenFilter(jwtTokenProvider), UsernamePasswordAuthenticationFilter.class);
+        http.addFilterBefore(new JwtFilter(jwtUtils), UsernamePasswordAuthenticationFilter.class);
 
-        http.addFilterBefore(new UserSecurityExceptionFilter(objectMapper), JwtTokenFilter.class);
+        http.addFilterBefore(new UserSecurityExceptionFilter(objectMapper), JwtFilter.class);
 
         http
                 .sessionManagement((session) -> session
