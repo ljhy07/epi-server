@@ -3,7 +3,6 @@ package com.example.user.domain.auth.service.implementation.naver;
 import com.example.user.domain.auth.presentation.dto.req.OAuthCodeLoginInput;
 import com.example.user.domain.auth.presentation.dto.res.Token;
 import com.example.user.domain.user.domain.User;
-import com.example.user.domain.user.domain.repository.UserRepository;
 import com.example.user.domain.user.domain.value.LoginType;
 import com.example.user.domain.user.domain.value.Role;
 import com.example.user.domain.user.presentation.dto.res.UserQueryResponse;
@@ -13,7 +12,7 @@ import com.example.user.global.config.properties.AuthProperties;
 import com.example.user.global.feign.auth.naver.NaverAuthClient;
 import com.example.user.global.feign.auth.naver.NaverInformationClient;
 import com.example.user.global.feign.auth.naver.dto.res.NaverAuthResponse;
-import com.example.user.global.jwt.util.JwtTokenProvider;
+import com.example.user.global.jwt.util.JwtUtils;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -23,13 +22,13 @@ import java.util.Map;
 @RequiredArgsConstructor
 @Service
 public class NaverAuthService {
+
     private final AuthProperties authProperties;
     private final NaverAuthClient naverAuthClient;
     private final NaverInformationClient naverInformationClient;
-    private final JwtTokenProvider jwtTokenProvider;
     private final CommandUserService commandUserService;
     private final QueryUserService queryUserService;
-
+    private final JwtUtils jwtUtils;
 
     @Transactional
     public Token execute(OAuthCodeLoginInput codeRequest) {
@@ -61,8 +60,8 @@ public class NaverAuthService {
         }
 
         return new Token(
-                jwtTokenProvider.createRefreshToken(user.id(), email),
-                jwtTokenProvider.createAccessToken(email)
+                jwtUtils.getRefreshToken(email),
+                jwtUtils.getAccessToken(email)
         );
     }
 }
