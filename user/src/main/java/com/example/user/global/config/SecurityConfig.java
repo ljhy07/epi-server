@@ -34,15 +34,20 @@ public class SecurityConfig {
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http, ObjectMapper objectMapper, JwtUtils jwtUtils) throws Exception {
-        http.csrf(AbstractHttpConfigurer::disable);
+        http
+                .csrf(AbstractHttpConfigurer::disable);
 
-        http.httpBasic(AbstractHttpConfigurer::disable);
+        http
+                .httpBasic(AbstractHttpConfigurer::disable);
 
-        http.formLogin(AbstractHttpConfigurer::disable);
+        http
+                .formLogin(AbstractHttpConfigurer::disable);
 
-        http.logout(AbstractHttpConfigurer::disable);
+        http
+                .logout(AbstractHttpConfigurer::disable);
 
-        http.cors((cors) -> cors
+        http
+                .cors((cors) -> cors
                         .configurationSource(request -> {
                                     CorsConfiguration configuration = new CorsConfiguration();
                                     configuration.setAllowedOriginPatterns(Collections.singletonList("*"));
@@ -56,11 +61,12 @@ public class SecurityConfig {
                         }));
 
         http
-            .authorizeHttpRequests((auth) -> auth
-                .requestMatchers("/graphql/**").authenticated()
-                .anyRequest().hasRole("USER"));
+                .authorizeHttpRequests((auth) -> auth
+                        .requestMatchers("/graphql/**").authenticated()
+                        .anyRequest().hasRole("USER"));
 
-        http.exceptionHandling(exceptionHandling -> exceptionHandling
+        http
+                .exceptionHandling(exceptionHandling -> exceptionHandling
                         .authenticationEntryPoint(((request, response, e) -> {
                             throw new UnauthenticatedAccessException();
                         }))
@@ -68,11 +74,14 @@ public class SecurityConfig {
                             throw new CustomAccessDeniedException();
                         }));
 
-        http.addFilterAfter(new UserSecurityExceptionFilter(objectMapper), CorsFilter.class);
+        http
+                .addFilterAfter(new UserSecurityExceptionFilter(objectMapper), CorsFilter.class);
 
-        http.addFilterBefore(new JwtFilter(jwtUtils), UsernamePasswordAuthenticationFilter.class);
+        http
+                .addFilterBefore(new JwtFilter(jwtUtils), UsernamePasswordAuthenticationFilter.class);
 
-        http.addFilterBefore(new UserSecurityExceptionFilter(objectMapper), JwtFilter.class);
+        http
+                .addFilterBefore(new UserSecurityExceptionFilter(objectMapper), JwtFilter.class);
 
         http
                 .sessionManagement((session) -> session
