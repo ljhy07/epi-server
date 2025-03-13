@@ -6,22 +6,24 @@ import com.example.user.domain.auth.service.implementation.kakao.KakaoAuthLinkSe
 import com.example.user.domain.auth.service.implementation.kakao.KakaoAuthService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.graphql.data.method.annotation.Argument;
+import org.springframework.graphql.data.method.annotation.MutationMapping;
+import org.springframework.graphql.data.method.annotation.QueryMapping;
 import org.springframework.web.bind.annotation.*;
 
 @RequiredArgsConstructor
-@RequestMapping("/kakao")
 @RestController
 public class KakaoController {
     private final KakaoAuthLinkService kakaoAuthLinkService;
     private final KakaoAuthService kakaoAuthService;
 
-    @GetMapping
+    @QueryMapping
     public String getKakaoAuthLink() {
         return kakaoAuthLinkService.execute();
     }
 
-    @PostMapping
-    public Token login(@RequestBody @Valid OAuthCodeLoginInput oauthCodeLoginInput) {
-        return kakaoAuthService.execute(oauthCodeLoginInput);
+    @MutationMapping
+    public Token oauthCodeLogin(@Argument OAuthCodeLoginInput oauthLoginInput) {
+        return kakaoAuthService.execute(oauthLoginInput);
     }
 }

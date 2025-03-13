@@ -5,7 +5,7 @@ import com.example.user.domain.auth.presentation.dto.res.Token;
 import com.example.user.domain.user.domain.User;
 import com.example.user.domain.user.domain.value.LoginType;
 import com.example.user.domain.user.domain.value.Role;
-import com.example.user.domain.user.presentation.dto.res.UserQueryResponse;
+import com.example.user.domain.user.presentation.dto.res.UserResponse;
 import com.example.user.domain.user.service.CommandUserService;
 import com.example.user.domain.user.service.QueryUserService;
 import com.example.user.global.config.properties.AuthProperties;
@@ -46,7 +46,7 @@ public class NaverAuthService {
 //        String profile_img = (String) info.get("profile_image");
         String email = (String) info.get("email");
 
-        UserQueryResponse user = queryUserService.getUserByEmail(email);
+        UserResponse user = queryUserService.getUserByEmail(email);
 
         if (user == null) {
             commandUserService.saveOAuth(

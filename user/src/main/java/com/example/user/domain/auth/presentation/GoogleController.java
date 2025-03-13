@@ -6,22 +6,24 @@ import com.example.user.domain.auth.service.implementation.google.GoogleAuthLink
 import com.example.user.domain.auth.service.implementation.google.GoogleAuthService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.graphql.data.method.annotation.Argument;
+import org.springframework.graphql.data.method.annotation.MutationMapping;
+import org.springframework.graphql.data.method.annotation.QueryMapping;
 import org.springframework.web.bind.annotation.*;
 
 @RequiredArgsConstructor
-@RequestMapping("/google")
 @RestController
 public class GoogleController {
     private final GoogleAuthLinkService googleLinkService;
     private final GoogleAuthService googleAuthService;
 
-    @GetMapping
+    @QueryMapping
     public String getGoogleAuthLink() {
         return googleLinkService.execute();
     }
 
-    @PostMapping
-    public Token login(@RequestBody @Valid OAuthTokenLoginInput oauthTokenLoginInput) {
-        return googleAuthService.execute(oauthTokenLoginInput);
+    @MutationMapping
+    public Token oauthTokenLogin(@Argument OAuthTokenLoginInput oauthLoginInput) {
+        return googleAuthService.execute(oauthLoginInput);
     }
 }
