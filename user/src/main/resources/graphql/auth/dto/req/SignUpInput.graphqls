@@ -1,0 +1,7 @@
+input SignUpInput {
+    name: String
+    password: String
+    email: String
+    phone: String
+    role: Role
+}
