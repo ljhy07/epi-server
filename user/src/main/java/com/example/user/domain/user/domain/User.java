@@ -26,31 +26,36 @@ public class User {
     @Email
     private String email;
 
+    private String phone;
+
     private LoginType LoginType;
 
     private Role role;
 
     @Builder(builderMethodName = "userCreateBuilder")
-    public User(String name, String password, String email, Role role, LoginType LoginType) {
+    public User(String name, String password, String email, String phone, Role role, LoginType LoginType) {
         this.name = name;
         this.password = password;
         this.email = email;
+        this.phone = phone;
         this.LoginType = LoginType;
         this.role = role;
     }
 
     @Builder(builderMethodName = "oauthUserCreateBuilder")
-    public User(String name, String email, Role role, LoginType loginType) {
+    public User(String name, String email, String phone, Role role, LoginType loginType) {
         this.name = name;
         this.email = email;
+        this.phone = phone;
         this.LoginType = loginType;
         this.role = role;
     }
 
     @Builder(builderMethodName = "userUpdateBuilder")
-    public User(String name, String email, Role role) {
+    public User(String name, String email, String phone, Role role) {
         this.name = name;
         this.email = email;
+        this.phone = phone;
         this.role = role;
     }
 
