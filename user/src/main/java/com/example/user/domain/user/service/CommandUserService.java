@@ -1,15 +1,18 @@
 package com.example.user.domain.user.service;
 
+import com.example.user.domain.auth.presentation.dto.req.SignUpInput;
+import com.example.user.domain.auth.presentation.dto.res.SignUpResponse;
+import com.example.user.domain.auth.service.implementation.AuthValidator;
 import com.example.user.domain.user.domain.User;
+import com.example.user.domain.user.domain.value.LoginType;
 import com.example.user.domain.user.presentation.dto.req.UserCreateInput;
 import com.example.user.domain.user.presentation.dto.req.UserPasswordUpdateInput;
 import com.example.user.domain.user.presentation.dto.req.UserUpdateInput;
-import com.example.user.domain.user.presentation.dto.res.UserCommandResponse;
+import com.example.user.domain.user.presentation.dto.res.UserResponse;
 import com.example.user.domain.user.service.implementation.UserCreator;
 import com.example.user.domain.user.service.implementation.UserDeleter;
 import com.example.user.domain.user.service.implementation.UserReader;
 import com.example.user.domain.user.service.implementation.UserUpdater;
-import com.example.user.global.jwt.util.JwtUtils;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -21,55 +24,85 @@ public class CommandUserService {
     private final UserUpdater userUpdater;
     private final UserDeleter userDeleter;
     private final UserReader userReader;
+    private final AuthValidator authValidator;
 
-    public UserCommandResponse save(
-            UserCreateInput userCreateInput
+    public SignUpResponse save(
+            SignUpInput signUpInput
     ){
-        User user = userCreator.create(userCreateInput.toEntity());
+        userCreator.create(
+                User.userCreateBuilder()
+                        .name(signUpInput.name())
+                        .email(signUpInput.email())
+                        .password(authValidator.hashPassword(signUpInput.password()))
+                        .phone(signUpInput.phone())
+                        .LoginType(LoginType.valueOf("self"))
+                        .role(signUpInput.role())
+                        .build()
+        );
 
-        return new UserCommandResponse(
-                user.getId()
+        return new SignUpResponse(
+                true
         );
     }
 
-    public UserCommandResponse saveOAuth(
+    public UserResponse saveOAuth(
             User user
     ){
         userCreator.create(user);
 
-        return new UserCommandResponse(
-                user.getId()
+        return new UserResponse(
+                user.getId(),
+                user.getName(),
+                user.getEmail(),
+                user.getPhone(),
+                user.getLoginType(),
+                user.getRole()
         );
     }
 
-    public UserCommandResponse update(
+    public UserResponse update(
             UserUpdateInput userUpdateInput
     ){
         User updatableUser = userReader.findByEmailFromSecurity();
         User user = userUpdater.update(updatableUser, userUpdateInput);
 
-        return new UserCommandResponse(
-                user.getId()
+        return new UserResponse(
+                user.getId(),
+                user.getName(),
+                user.getEmail(),
+                user.getPhone(),
+                user.getLoginType(),
+                user.getRole()
         );
     }
 
-    public UserCommandResponse updatePassword(
+    public UserResponse updatePassword(
             UserPasswordUpdateInput userPasswordUpdateInput
     ){
         User updatableUser = userReader.findByEmailFromSecurity();
         User user = userUpdater.updatePassword(updatableUser, userPasswordUpdateInput.password());
 
-        return new UserCommandResponse(
-                user.getId()
+        return new UserResponse(
+                user.getId(),
+                user.getName(),
+                user.getEmail(),
+                user.getPhone(),
+                user.getLoginType(),
+                user.getRole()
         );
     }
 
-    public UserCommandResponse delete(){
+    public UserResponse delete(){
         User updatableUser = userReader.findByEmailFromSecurity();
         User user = userDeleter.delete(updatableUser);
 
-        return new UserCommandResponse(
-                user.getId()
+        return new UserResponse(
+                user.getId(),
+                user.getName(),
+                user.getEmail(),
+                user.getPhone(),
+                user.getLoginType(),
+                user.getRole()
         );
     }
 
