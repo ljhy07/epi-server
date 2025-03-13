@@ -9,14 +9,7 @@ public record UserCreateInput (
         String name,
         String password,
         String email,
+        String phone,
         Role role
 ){
-    public User toEntity(){
-        return User.userCreateBuilder()
-                .name(name)
-                .password(password)
-                .email(email)
-                .role(role)
-                .build();
-    }
 }
