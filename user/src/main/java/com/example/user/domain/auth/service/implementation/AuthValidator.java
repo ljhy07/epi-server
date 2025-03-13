@@ -3,6 +3,7 @@ package com.example.user.domain.auth.service.implementation;
 import com.example.user.domain.auth.exception.InvalidCredentialsException;
 import com.example.user.domain.user.domain.User;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -16,5 +17,10 @@ public class AuthValidator {
         if (!passwordEncoder.matches(password, user.getPassword())) {
             throw new InvalidCredentialsException();
         }
+    }
+
+    // 비밀번호 해싱
+    public String hashPassword(String rawPassword) {
+        return passwordEncoder.encode(rawPassword);
     }
 }
