@@ -1,7 +1,8 @@
-type User {
+type UserResponse {
     id: ID!
     name: String
     email: String
+    phone: String
     LoginType: String
     role: Role
 }
