@@ -4,6 +4,7 @@ public record UserUpdateInput(
         String accessToken,
         String name,
         String email,
+        String phone,
         String Role
 ) {
 }
