@@ -14,10 +14,8 @@ import org.springframework.web.servlet.ModelAndView;
 @RestControllerAdvice
 public class GlobalExceptionHandler {
 
-
-    @Value("${server.url}")
-    private String baseUrl;
-
+//    @Value("${server.url}")
+//    private String baseUrl;
 
     @ExceptionHandler(UserException.class)
     public ResponseEntity<ErrorResponse> handleApplicationException(UserException exception) {
@@ -66,7 +64,7 @@ public class GlobalExceptionHandler {
         }
 
         modelAndView.addObject("status", status);
-        modelAndView.addObject("baseUrl", baseUrl);
+//        modelAndView.addObject("baseUrl", baseUrl);
 
         return modelAndView;
     }
