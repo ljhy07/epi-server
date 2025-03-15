@@ -13,16 +13,19 @@ import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.io.FileSystemResource;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.stereotype.Component;
 
 import java.io.File;
 import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.security.KeyFactory;
 import java.security.interfaces.RSAPrivateKey;
 import java.security.interfaces.RSAPublicKey;
 import java.security.spec.PKCS8EncodedKeySpec;
 import java.security.spec.X509EncodedKeySpec;
+import java.util.Base64;
 import java.util.Date;
 
 @Slf4j
@@ -36,11 +39,6 @@ public class JwtUtils {
     private final RSAPrivateKey privateKey;
     private final RSAPublicKey publicKey;
 
-    @Value("${spring.jwt.private-key-path}")
-    private String privateKeyPath;
-    @Value("${spring.jwt.public-key-path}")
-    private String publicKeyPath;
-
     public JwtUtils(
             UserReader userReader,
             CustomUserDetailsService customUserDetailsService,
@@ -50,12 +48,21 @@ public class JwtUtils {
         this.userReader = userReader;
         this.authCreator = authCreator;
 
-        KeyFactory keyFactory = KeyFactory.getInstance("RSA");
-        byte[] privateKeyBytes = Files.readAllBytes(new File(privateKeyPath).toPath());
-        byte[] publicKeyBytes = Files.readAllBytes(new File(publicKeyPath).toPath());
+        String privateKeyContent = new String(Files.readAllBytes(Paths.get(new FileSystemResource("env/private_key_pkcs8.pem").getURI())));
+        String publicKeyContent = new String(Files.readAllBytes(Paths.get(new FileSystemResource("env/public_key.pem").getURI())));
 
-        privateKey = (RSAPrivateKey) keyFactory.generatePrivate(new PKCS8EncodedKeySpec(privateKeyBytes));
-        publicKey = (RSAPublicKey) keyFactory.generatePublic(new X509EncodedKeySpec(publicKeyBytes));
+        privateKeyContent = privateKeyContent
+                .replaceAll("\\s", "");
+        publicKeyContent = publicKeyContent
+                .replaceAll("\\s", "");
+
+        KeyFactory keyFactory = KeyFactory.getInstance("RSA");
+
+        PKCS8EncodedKeySpec keySpecPKCS8 = new PKCS8EncodedKeySpec(Base64.getDecoder().decode(privateKeyContent));
+        this.privateKey = (RSAPrivateKey) keyFactory.generatePrivate(keySpecPKCS8);
+
+        X509EncodedKeySpec keySpecX509 = new X509EncodedKeySpec(Base64.getDecoder().decode(publicKeyContent));
+        this.publicKey = (RSAPublicKey) keyFactory.generatePublic(keySpecX509);
     }
 
     public Claims validateToken(String token) {
