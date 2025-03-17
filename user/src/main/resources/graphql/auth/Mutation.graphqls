@@ -1,7 +1,8 @@
 extend type Mutation {
     signup(signUpInput: SignUpInput): SignUpResponse
     login(loginInput: LoginInput): Token
-    oauthCodeLogin(oauthLoginInput: OAuthCodeLoginInput): Token
-    oauthTokenLogin(oauthLoginInput: OAuthTokenLoginInput): Token
+    oauthKakaoLogin(oauthLoginInput: OAuthCodeLoginInput): Token
+    oauthNaverLogin(oauthLoginInput: OAuthCodeLoginInput): Token
+    oauthGoogleLogin(oauthLoginInput: OAuthTokenLoginInput): Token
     reissueToken(reissueTokenInput: ReissueTokenInput): Token
 }

@@ -23,7 +23,7 @@ public class GoogleController {
     }
 
     @MutationMapping
-    public Token oauthTokenLogin(@Argument OAuthTokenLoginInput oauthLoginInput) {
+    public Token oauthGoogleLogin(@Argument OAuthTokenLoginInput oauthLoginInput) {
         return googleAuthService.execute(oauthLoginInput);
     }
 }

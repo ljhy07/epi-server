@@ -23,7 +23,7 @@ public class KakaoController {
     }
 
     @MutationMapping
-    public Token oauthCodeLogin(@Argument OAuthCodeLoginInput oauthLoginInput) {
+    public Token oauthKakaoLogin(@Argument OAuthCodeLoginInput oauthLoginInput) {
         return kakaoAuthService.execute(oauthLoginInput);
     }
 }
