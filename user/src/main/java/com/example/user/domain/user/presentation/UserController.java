@@ -1,6 +1,5 @@
 package com.example.user.domain.user.presentation;
 
-import com.example.user.domain.user.presentation.dto.req.UserCreateInput;
 import com.example.user.domain.user.presentation.dto.req.UserPasswordUpdateInput;
 import com.example.user.domain.user.presentation.dto.req.UserUpdateInput;
 import com.example.user.domain.user.presentation.dto.res.UserResponse;
@@ -10,11 +9,11 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.graphql.data.method.annotation.Argument;
 import org.springframework.graphql.data.method.annotation.MutationMapping;
 import org.springframework.graphql.data.method.annotation.QueryMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.stereotype.Controller;
 
 import java.util.List;
 
-@RestController
+@Controller
 @RequiredArgsConstructor
 public class UserController {
 
