@@ -1,15 +1,14 @@
 package com.example.user.global.config;
 
-import graphql.scalars.ExtendedScalars;
+import com.example.user.global.graphql.handler.GraphqlHandlerMapping;
+import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.graphql.execution.RuntimeWiringConfigurer;
 
 @Configuration
 public class GraphQLConfig {
     @Bean
-    public RuntimeWiringConfigurer runtimeWiringConfigurer() {
-        return wiringBuilder -> wiringBuilder
-                .scalar(ExtendedScalars.DateTime);
+    public GraphqlHandlerMapping graphqlHandlerMapping(ApplicationContext applicationContext) {
+        return new GraphqlHandlerMapping(applicationContext);
     }
 }
