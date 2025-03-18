@@ -1,6 +1,6 @@
-package com.example.user.domain.mail.domain.repository;
+package com.example.user.domain.email.domain.repository;
 
-import com.example.user.domain.mail.domain.Email;
+import com.example.user.domain.email.domain.Email;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

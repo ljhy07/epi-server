@@ -1,4 +1,4 @@
-package com.example.user.domain.mail.exception;
+package com.example.user.domain.email.exception;
 
 import com.example.user.global.exception.mail.UserMailException;
 import org.springframework.http.HttpStatus;

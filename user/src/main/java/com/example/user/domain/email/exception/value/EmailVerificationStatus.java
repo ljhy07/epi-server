@@ -1,4 +1,4 @@
-package com.example.user.domain.mail.exception.value;
+package com.example.user.domain.email.exception.value;
 
 public enum EmailVerificationStatus {
     SUCCESS,
