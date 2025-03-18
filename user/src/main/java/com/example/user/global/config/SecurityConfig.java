@@ -62,7 +62,7 @@ public class SecurityConfig {
 
         http
                 .authorizeHttpRequests((auth) -> auth
-                        .requestMatchers("/graphql/**").authenticated()
+                        .requestMatchers("/graphql/**","/graphiql/**").permitAll()
                         .anyRequest().hasRole("USER"));
 
         http
