@@ -1,0 +1,3 @@
+input RequestEmailVerificationInput {
+    email: String!
+}
