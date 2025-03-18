@@ -7,7 +7,7 @@ spring:
       - optional:file:env/user.env[.properties]
 
   profiles:
-    active: oauth
+    active: auth
 
   jpa:
     show-sql: true
