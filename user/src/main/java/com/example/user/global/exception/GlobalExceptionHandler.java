@@ -1,10 +1,9 @@
 package com.example.user.global.exception;
 
-import com.example.user.domain.mail.exception.value.EmailVerificationStatus;
+import com.example.user.domain.email.exception.value.EmailVerificationStatus;
 import com.example.user.global.exception.mail.UserMailException;
 import com.example.user.global.exception.security.UserSecurityException;
 import com.example.user.global.log.util.LogUtils;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
