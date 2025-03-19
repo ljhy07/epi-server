@@ -35,7 +35,7 @@ public class CommandUserService {
                         .email(signUpInput.email())
                         .password(authValidator.hashPassword(signUpInput.password()))
                         .phone(signUpInput.phone())
-                        .LoginType(LoginType.valueOf("self"))
+                        .LoginType(LoginType.NORMAL)
                         .role(signUpInput.role())
                         .build()
         );
