@@ -8,12 +8,10 @@ import com.example.user.domain.auth.presentation.dto.res.Token;
 import com.example.user.domain.auth.service.CommandAuthService;
 import com.example.user.domain.user.service.CommandUserService;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.graphql.data.method.annotation.Argument;
 import org.springframework.graphql.data.method.annotation.MutationMapping;
 import org.springframework.stereotype.Controller;
 
-@Slf4j
 @Controller
 @RequiredArgsConstructor
 public class AuthController {
@@ -23,21 +21,21 @@ public class AuthController {
 
     @MutationMapping
     public SignUpResponse signup(
-            @Argument SignUpInput signUpInput
+            @Argument(name = "signUpInput") SignUpInput signUpInput
     ){
         return commandUserService.save(signUpInput);
     }
 
     @MutationMapping
     public Token login(
-            @Argument LoginInput loginInput
+            @Argument(name = "loginInput") LoginInput loginInput
     ){
         return commandAuthService.login(loginInput);
     }
 
     @MutationMapping
     public Token reissueToken(
-            @Argument ReissueTokenInput reissueTokenInput
+            @Argument(name = "reissueTokenInput") ReissueTokenInput reissueTokenInput
     ){
         return commandAuthService.reissue(reissueTokenInput);
     }
