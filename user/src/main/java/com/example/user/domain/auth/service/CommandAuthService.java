@@ -13,9 +13,11 @@ import com.example.user.domain.user.domain.User;
 import com.example.user.domain.user.service.implementation.UserReader;
 import com.example.user.global.jwt.util.JwtUtils;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+@Slf4j
 @Service
 @Transactional
 @RequiredArgsConstructor
@@ -33,10 +35,7 @@ public class CommandAuthService {
 
         authValidator.validatePassword(loginInput.password(), user);
 
-        return new Token(
-                jwtUtils.getRefreshToken(loginInput.email()),
-                jwtUtils.getAccessToken(loginInput.email())
-        );
+        return jwtUtils.getToken(user.getEmail());
     }
 
     public Token reissue(ReissueTokenInput input) {
@@ -50,22 +49,19 @@ public class CommandAuthService {
         User user = userReader.findById(refresh.getId());
         String email = user.getEmail();
 
-        String newAccess = jwtUtils.getAccessToken(email);
-        String newRefresh = jwtUtils.getRefreshToken(email);
+        Token token = jwtUtils.getToken(email);
 
         authDeleter.deleteByRefresh(refreshToken);
         authCreator.createRefreshToken(
                 Refresh.builder()
                         .userId(user.getId())
-                        .refreshToken(newRefresh)
+                        .accessToken(refresh.getAccessToken())
+                        .refreshToken(token.refreshToken())
                         .expiration(0)
                         .build()
         );
 
-        return new Token(
-                newRefresh,
-                newAccess
-        );
+        return token;
     }
 
 }
