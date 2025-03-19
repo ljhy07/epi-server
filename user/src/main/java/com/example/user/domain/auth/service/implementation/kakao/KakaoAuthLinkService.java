@@ -1,6 +1,6 @@
 package com.example.user.domain.auth.service.implementation.kakao;
 
-import com.example.user.global.config.properties.AuthProperties;
+import com.example.user.global.config.properties.auth.KakaoProperties;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -9,14 +9,14 @@ import org.springframework.stereotype.Service;
 public class KakaoAuthLinkService {
     private static final String QUERY_STRING = "?client_id=%s&" +
             "redirect_uri=%s&response_type=code";
-    private final AuthProperties authProperties;
+    private final KakaoProperties kakaoProperties;
 
     public String execute() {
-        return authProperties.getKakaoBaseUrl() +
+        return kakaoProperties.getBaseUrl() +
                 String.format(
                         QUERY_STRING,
-                        authProperties.getKakaoSecretId(),
-                        authProperties.getKakaoRedirectUrl()
+                        kakaoProperties.getSecretId(),
+                        kakaoProperties.getRedirectUrl()
                 );
     }
 }

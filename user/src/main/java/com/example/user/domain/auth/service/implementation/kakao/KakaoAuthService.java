@@ -8,7 +8,7 @@ import com.example.user.domain.user.domain.value.Role;
 import com.example.user.domain.user.presentation.dto.res.UserResponse;
 import com.example.user.domain.user.service.CommandUserService;
 import com.example.user.domain.user.service.QueryUserService;
-import com.example.user.global.config.properties.AuthProperties;
+import com.example.user.global.config.properties.auth.KakaoProperties;
 import com.example.user.global.feign.auth.kakao.KakaoAuthClient;
 import com.example.user.global.feign.auth.kakao.KakaoInformationClient;
 import com.example.user.global.feign.auth.kakao.dto.res.KakaoAuthResponse;
@@ -23,7 +23,7 @@ import java.util.Map;
 @Service
 public class KakaoAuthService {
 
-    private final AuthProperties authProperties;
+    private final KakaoProperties kakaoProperties;
     private final KakaoAuthClient kakaoAuthClient;
     private final KakaoInformationClient kakaoInformationClient;
     private final CommandUserService commandUserService;
@@ -33,8 +33,8 @@ public class KakaoAuthService {
     @Transactional
     public Token execute(OAuthCodeLoginInput codeRequest) {
         KakaoAuthResponse accessToken = kakaoAuthClient.getAccessToken(
-                authProperties.getKakaoClientId(),
-                authProperties.getKakaoRedirectUrl(),
+                kakaoProperties.getClientId(),
+                kakaoProperties.getRedirectUrl(),
                 codeRequest.code());
 
         Map<String, Object> response = kakaoInformationClient.getUserInformation("Bearer " + accessToken.getAccess_token());
@@ -59,9 +59,6 @@ public class KakaoAuthService {
             );
         }
 
-        return new Token(
-                jwtUtils.getRefreshToken(email),
-                jwtUtils.getAccessToken(email)
-        );
+        return jwtUtils.getToken(email);
     }
 }

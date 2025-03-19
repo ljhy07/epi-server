@@ -8,7 +8,7 @@ import com.example.user.domain.user.domain.value.Role;
 import com.example.user.domain.user.presentation.dto.res.UserResponse;
 import com.example.user.domain.user.service.CommandUserService;
 import com.example.user.domain.user.service.QueryUserService;
-import com.example.user.global.config.properties.AuthProperties;
+import com.example.user.global.config.properties.auth.NaverProperties;
 import com.example.user.global.feign.auth.naver.NaverAuthClient;
 import com.example.user.global.feign.auth.naver.NaverInformationClient;
 import com.example.user.global.feign.auth.naver.dto.res.NaverAuthResponse;
@@ -23,7 +23,7 @@ import java.util.Map;
 @Service
 public class NaverAuthService {
 
-    private final AuthProperties authProperties;
+    private final NaverProperties naverProperties;
     private final NaverAuthClient naverAuthClient;
     private final NaverInformationClient naverInformationClient;
     private final CommandUserService commandUserService;
@@ -33,9 +33,9 @@ public class NaverAuthService {
     @Transactional
     public Token execute(OAuthCodeLoginInput codeRequest) {
         NaverAuthResponse accessToken = naverAuthClient.getAccessToken(
-                authProperties.getNaverClientId(),
-                authProperties.getNaverSecretId(),
-                authProperties.getNaverRedirectUrl(),
+                naverProperties.getClientId(),
+                naverProperties.getSecretId(),
+                naverProperties.getRedirectUrl(),
                 codeRequest.code()
         );
 
@@ -59,9 +59,6 @@ public class NaverAuthService {
             );
         }
 
-        return new Token(
-                jwtUtils.getRefreshToken(email),
-                jwtUtils.getAccessToken(email)
-        );
+        return jwtUtils.getToken(email);
     }
 }

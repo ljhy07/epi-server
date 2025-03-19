@@ -43,9 +43,6 @@ public class GoogleAuthService {
             );
         }
 
-        return new Token(
-                jwtUtils.getRefreshToken(email),
-                jwtUtils.getAccessToken(email)
-        );
+        return jwtUtils.getToken(email);
     }
 }
