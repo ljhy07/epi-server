@@ -1,9 +1,6 @@
 package com.example.user.domain.auth.domain;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
@@ -19,13 +16,18 @@ public class Refresh {
 
     private Long userId;
 
+    @Column(columnDefinition = "TEXT")
+    private String accessToken;
+
+    @Column(columnDefinition = "TEXT")
     private String refreshToken;
 
     private Integer expiration; // is_use
 
     @Builder
-    public Refresh(Long userId, String refreshToken, Integer expiration) {
+    public Refresh(Long userId, String accessToken, String refreshToken, Integer expiration) {
         this.userId = userId;
+        this.accessToken = accessToken;
         this.refreshToken = refreshToken;
         this.expiration = expiration;
     }
