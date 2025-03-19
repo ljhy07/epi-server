@@ -1,5 +1,5 @@
 type Query {
     getAllUser: [UserResponse],
-    getUserById(userId: Int): UserResponse,
+    getUserById(userId: ID): UserResponse,
     getUserByAccessToken: UserResponse
 }
