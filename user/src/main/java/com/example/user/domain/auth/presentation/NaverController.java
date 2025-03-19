@@ -22,7 +22,7 @@ public class NaverController {
     }
 
     @MutationMapping
-    public Token oauthNaverLogin(@Argument OAuthCodeLoginInput oauthLoginInput) {
+    public Token oauthNaverLogin(@Argument(name = "oauthLoginInput") OAuthCodeLoginInput oauthLoginInput) {
         return naverAuthService.execute(oauthLoginInput);
     }
 }
