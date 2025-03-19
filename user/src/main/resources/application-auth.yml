@@ -45,4 +45,5 @@ spring:
       secret-id: ${KAKAO_CLIENT_SECRET}
 
 server:
+#  url: "http://localhost:8080"
   redirect: "http://localhost:3000"
