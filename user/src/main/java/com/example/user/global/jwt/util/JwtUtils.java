@@ -1,6 +1,7 @@
 package com.example.user.global.jwt.util;
 
 import com.example.user.domain.auth.domain.Refresh;
+import com.example.user.domain.auth.presentation.dto.res.Token;
 import com.example.user.domain.auth.service.CustomUserDetailsService;
 import com.example.user.domain.auth.service.dto.CustomUserDetails;
 import com.example.user.domain.auth.service.implementation.AuthCreator;
@@ -12,12 +13,10 @@ import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.FileSystemResource;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.stereotype.Component;
 
-import java.io.File;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.security.KeyFactory;
@@ -65,42 +64,24 @@ public class JwtUtils {
         this.publicKey = (RSAPublicKey) keyFactory.generatePublic(keySpecX509);
     }
 
-    public Claims validateToken(String token) {
-        return Jwts.parser()
-                .verifyWith(publicKey) // 공개키로 검증
-                .build()
-                .parseSignedClaims(token)
-                .getPayload();
+    public Token getToken(String email){
+        return createToken(email);
     }
 
-    public String getAccessToken(String email){
-        return createAccessToken(email);
-    }
-
-    public String getRefreshToken(String email){
-        return createRefreshToken(email);
-    }
-
-    private String createAccessToken(String email) {
+    private Token createToken(String email){
         User user = userReader.findByEmail(email);
 
-        return Jwts.builder()
-                .claim("sub", user.getId()) // subject
-                .claim("role", user.getRole()) // role
+        String accessToken = Jwts.builder()
+                .claim("sub", user.getId().toString()) // subject (userId)
+                .claim("ro", user.getRole()) // role
                 .issuedAt(new Date())
                 .expiration(new Date(System.currentTimeMillis() + 60000))
                 .signWith(privateKey, SignatureAlgorithm.RS256)
                 .compact();
-    }
-
-    private String createRefreshToken(String email) {
-        User user = userReader.findByEmail(email);
 
         String refreshToken = Jwts.builder()
-                .claim("sub", user.getId()) // subject
-                .claim("role", user.getRole()) // role
+                .claim("sub", user.getId().toString()) // subject (userId)
                 .claim("em", user.getEmail()) // email
-                .claim("us", 1) // is_use
                 .issuedAt(new Date())
                 .expiration(new Date(System.currentTimeMillis() + 604800000))
                 .signWith(privateKey, SignatureAlgorithm.RS256)
@@ -109,12 +90,16 @@ public class JwtUtils {
         authCreator.createRefreshToken(
                 Refresh.builder()
                         .userId(user.getId())
+                        .accessToken(accessToken)
                         .refreshToken(refreshToken)
                         .expiration(1)
                         .build()
         );
 
-        return refreshToken;
+        return new Token(
+                refreshToken,
+                accessToken
+        );
     }
 
     public UsernamePasswordAuthenticationToken authorization(String token) {
@@ -127,27 +112,20 @@ public class JwtUtils {
     }
 
     private String getRole(String token){
-        return getTokenBody(token).get("role", String.class);
+        return getTokenBody(token).get("ro", String.class);
     }
 
     private String getTokenEm(String token){
         return getTokenBody(token).get("em", String.class);
     }
 
-    private String getTokenUs(String token){
-        return getTokenBody(token).get("us", String.class);
-    }
-
     private Claims getTokenBody(String token){
         try {
-            Claims tokenBody = Jwts.parser()
+            return Jwts.parser()
                     .verifyWith(publicKey) // 공개키로 검증
                     .build()
                     .parseSignedClaims(token)
                     .getPayload();
-
-            log.info("Token Body: {}", tokenBody.toString());
-            return tokenBody;
         } catch(io.jsonwebtoken.ExpiredJwtException e) {
             throw new ExpiredTokenException();
         } catch (Exception e) {
