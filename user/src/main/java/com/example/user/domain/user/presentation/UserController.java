@@ -27,7 +27,7 @@ public class UserController {
 
     @QueryMapping
     public UserResponse getUserById(
-            @Argument Long userId
+            @Argument(name = "userId") Long userId
     ){
         return queryUserService.getUser(userId);
     }
@@ -46,14 +46,14 @@ public class UserController {
 
     @MutationMapping
     public UserResponse updateUser(
-            @Argument UserUpdateInput userUpdateInput
+            @Argument(name = "userUpdateInput") UserUpdateInput userUpdateInput
     ){
         return commandUserService.update(userUpdateInput);
     }
 
     @MutationMapping
     public UserResponse updateUserPassword(
-            @Argument UserPasswordUpdateInput userPasswordUpdateInput
+            @Argument(name = "userPasswordUpdateInput") UserPasswordUpdateInput userPasswordUpdateInput
     ){
         return commandUserService.updatePassword(userPasswordUpdateInput);
     }
