@@ -2,5 +2,4 @@ extend type Query {
     getGoogleAuthLink: String
     getKakaoAuthLink: String
     getNaverAuthLink: String
-    checkAuthStatus: Boolean
 }
