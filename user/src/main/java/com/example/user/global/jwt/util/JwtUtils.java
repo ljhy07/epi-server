@@ -73,7 +73,7 @@ public class JwtUtils {
 
         String accessToken = Jwts.builder()
                 .claim("sub", user.getId().toString()) // subject (userId)
-                .claim("ro", user.getRole()) // role
+                .claim("em", user.getEmail()) // email
                 .issuedAt(new Date())
                 .expiration(new Date(System.currentTimeMillis() + 60000))
                 .signWith(privateKey, SignatureAlgorithm.RS256)
