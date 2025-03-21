@@ -1,0 +1,6 @@
+input CreateAddressInput {
+    address: String
+    receiver: String
+    phone: String
+    etc: String
+}

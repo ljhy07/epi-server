@@ -1,0 +1,7 @@
+input UpdateAddressInput {
+    addressId: Int
+    address: String
+    receiver: String
+    phone: String
+    etc: String
+}
