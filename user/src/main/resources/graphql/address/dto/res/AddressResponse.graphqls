@@ -1,0 +1,7 @@
+type AddressResponse {
+    addressId: ID
+    address: String
+    receiver: String
+    phone: String
+    etc: String
+}
