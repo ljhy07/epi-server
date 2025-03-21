@@ -46,7 +46,7 @@ public class CommandAuthService {
             throw new LimitedReissueOpportunitiesException();
         }
 
-        User user = userReader.findById(refresh.getId());
+        User user = userReader.findById(refresh.getRefreshId());
         String email = user.getEmail();
 
         Token token = jwtUtils.getToken(email);
