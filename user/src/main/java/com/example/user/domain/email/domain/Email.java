@@ -5,10 +5,12 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import lombok.AccessLevel;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 @Entity
 @Getter
@@ -25,4 +27,19 @@ public class Email{
     private LocalDateTime expiryDate;
 
     private boolean isVerified = false;
+
+    @Builder
+    public Email(String email) {
+        this.email = email;
+        this.token = UUID.randomUUID().toString();
+        this.expiryDate = LocalDateTime.now().plusHours(24);
+    }
+
+    public boolean isExpired() {
+        return LocalDateTime.now().isAfter(this.expiryDate);
+    }
+
+    public void verify() {
+        this.isVerified = true;
+    }
 }
