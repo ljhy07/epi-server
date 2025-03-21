@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
 public class Refresh {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long refreshId;
 
     private Long userId;
 
