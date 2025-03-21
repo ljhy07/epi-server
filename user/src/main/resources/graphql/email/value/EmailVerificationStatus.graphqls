@@ -1,0 +1,7 @@
+enum EmailVerificationStatus {
+    SUCCESS,
+    NOT_FOUND,
+    EXPIRED,
+    ALREADY_VERIFIED,
+    ERROR
+}
