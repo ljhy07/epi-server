@@ -39,11 +39,4 @@ public class AuthController {
     ){
         return commandAuthService.reissue(reissueTokenInput);
     }
-
-//    // 인증 인가용 method
-//    @QueryMapping
-//    @ResponseStatus(HttpStatus.OK)
-//    public boolean checkAuthStatus(){
-//        return
-//    }
 }
