@@ -1,0 +1,5 @@
+extend type Mutation {
+    createAddress(createAddressInput: CreateAddressInput): AddressResponse
+    updateAddress(updateAddressInput: UpdateAddressInput): AddressResponse
+    deleteAddress(deleteAddressInput: DeleteAddressInput): AddressResponse
+}
