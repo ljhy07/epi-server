@@ -40,9 +40,8 @@ public class KakaoAuthService {
         Map<String, Object> response = kakaoInformationClient.getUserInformation("Bearer " + accessToken.getAccess_token());
 
         Map<String, Object> kakao_account = (Map<String, Object>) response.get("kakao_account");
-        Map<String, Object> profile = (Map<String, Object>) kakao_account.get("profile");
+//        Map<String, Object> profile = (Map<String, Object>) kakao_account.get("profile");
 
-        String nickname = (String) profile.get("nickname");
 //        String profile_img = (String) profile.get("profile_image_url");
         String email = (String) kakao_account.get("email");
 
@@ -51,7 +50,6 @@ public class KakaoAuthService {
         if (user == null) {
             commandUserService.saveOAuth(
                     User.oauthUserCreateBuilder()
-                            .name(nickname)
                             .email(email)
                             .loginType(LoginType.GOOGLE)
                             .role(Role.User)

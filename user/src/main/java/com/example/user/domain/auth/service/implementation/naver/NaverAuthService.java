@@ -42,7 +42,6 @@ public class NaverAuthService {
         Map<String, Object> response = naverInformationClient.getUserInformation("Bearer " + accessToken.getAccess_token());
         Map<String, Object> info = (Map<String, Object>) response.get("response");
 
-        String nickname = (String) info.get("nickname");
 //        String profile_img = (String) info.get("profile_image");
         String email = (String) info.get("email");
 
@@ -51,7 +50,6 @@ public class NaverAuthService {
         if (user == null) {
             commandUserService.saveOAuth(
                     User.oauthUserCreateBuilder()
-                            .name(nickname)
                             .email(email)
                             .loginType(LoginType.GOOGLE)
                             .role(Role.User)

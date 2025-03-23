@@ -35,7 +35,6 @@ public class GoogleAuthService {
         if (user == null) {
             commandUserService.saveOAuth(
                     User.oauthUserCreateBuilder()
-                        .name(response.getName())
                         .email(email)
                         .loginType(LoginType.GOOGLE)
                         .role(Role.User)
