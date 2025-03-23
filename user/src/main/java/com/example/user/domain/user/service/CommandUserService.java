@@ -1,6 +1,8 @@
 package com.example.user.domain.user.service;
 
+import com.example.user.domain.auth.presentation.dto.req.AdditionalInfoInput;
 import com.example.user.domain.auth.presentation.dto.req.SignUpInput;
+import com.example.user.domain.auth.presentation.dto.res.AdditionalInfoResponse;
 import com.example.user.domain.auth.presentation.dto.res.SignUpResponse;
 import com.example.user.domain.auth.service.implementation.AuthValidator;
 import com.example.user.domain.user.domain.User;
@@ -13,6 +15,7 @@ import com.example.user.domain.user.service.implementation.UserCreator;
 import com.example.user.domain.user.service.implementation.UserDeleter;
 import com.example.user.domain.user.service.implementation.UserReader;
 import com.example.user.domain.user.service.implementation.UserUpdater;
+import com.example.user.global.auth.util.AuthUtils;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -25,6 +28,7 @@ public class CommandUserService {
     private final UserDeleter userDeleter;
     private final UserReader userReader;
     private final AuthValidator authValidator;
+    private final AuthUtils authUtils;
 
     public SignUpResponse save(
             SignUpInput signUpInput
@@ -57,6 +61,18 @@ public class CommandUserService {
                 user.getPhone(),
                 user.getLoginType(),
                 user.getRole()
+        );
+    }
+
+    public AdditionalInfoResponse additionalInfo(
+            AdditionalInfoInput additionalInfoInput
+    ){
+        User user = userReader.findByEmail(authUtils.getCurrentUser().getEmail());
+
+        userCreator.additionalInfo(user, additionalInfoInput);
+
+        return new AdditionalInfoResponse(
+                true
         );
     }
 
