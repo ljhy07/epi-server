@@ -43,12 +43,16 @@ public class User {
     }
 
     @Builder(builderMethodName = "oauthUserCreateBuilder")
-    public User(String name, String email, String phone, Role role, LoginType loginType) {
-        this.name = name;
+    public User(String email, Role role, LoginType loginType) {
         this.email = email;
-        this.phone = phone;
         this.LoginType = loginType;
         this.role = role;
+    }
+
+    @Builder(builderMethodName = "additionalInfoBuilder")
+    public User(String name, String phone) {
+        this.name = name;
+        this.phone = phone;
     }
 
     @Builder(builderMethodName = "userUpdateBuilder")
