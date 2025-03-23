@@ -1,4 +1,5 @@
 extend type Mutation {
+    additionalInfo(additionalInfoInput: AdditionalInfoInput): AdditionalInfoResponse
     signup(signUpInput: SignUpInput): SignUpResponse
     login(loginInput: LoginInput): Token
     oauthKakaoLogin(oauthLoginInput: OAuthCodeLoginInput): Token
