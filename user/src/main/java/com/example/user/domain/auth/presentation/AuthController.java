@@ -1,8 +1,10 @@
 package com.example.user.domain.auth.presentation;
 
+import com.example.user.domain.auth.presentation.dto.req.AdditionalInfoInput;
 import com.example.user.domain.auth.presentation.dto.req.LoginInput;
 import com.example.user.domain.auth.presentation.dto.req.ReissueTokenInput;
 import com.example.user.domain.auth.presentation.dto.req.SignUpInput;
+import com.example.user.domain.auth.presentation.dto.res.AdditionalInfoResponse;
 import com.example.user.domain.auth.presentation.dto.res.SignUpResponse;
 import com.example.user.domain.auth.presentation.dto.res.Token;
 import com.example.user.domain.auth.service.CommandAuthService;
@@ -31,6 +33,13 @@ public class AuthController {
             @Argument(name = "loginInput") LoginInput loginInput
     ){
         return commandAuthService.login(loginInput);
+    }
+
+    @MutationMapping
+    public AdditionalInfoResponse additionalInfo(
+            @Argument(name = "additionalInfoInput") AdditionalInfoInput additionalInfoInput
+    ){
+        return commandUserService.additionalInfo(additionalInfoInput);
     }
 
     @MutationMapping
