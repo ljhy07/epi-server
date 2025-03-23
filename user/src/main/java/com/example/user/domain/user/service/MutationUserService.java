@@ -7,7 +7,6 @@ import com.example.user.domain.auth.presentation.dto.res.SignUpResponse;
 import com.example.user.domain.auth.service.implementation.AuthValidator;
 import com.example.user.domain.user.domain.User;
 import com.example.user.domain.user.domain.value.LoginType;
-import com.example.user.domain.user.presentation.dto.req.UserCreateInput;
 import com.example.user.domain.user.presentation.dto.req.UserPasswordUpdateInput;
 import com.example.user.domain.user.presentation.dto.req.UserUpdateInput;
 import com.example.user.domain.user.presentation.dto.res.UserResponse;
@@ -21,7 +20,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
-public class CommandUserService {
+public class MutationUserService {
 
     private final UserCreator userCreator;
     private final UserUpdater userUpdater;

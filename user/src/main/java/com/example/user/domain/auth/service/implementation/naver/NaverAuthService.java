@@ -6,7 +6,7 @@ import com.example.user.domain.user.domain.User;
 import com.example.user.domain.user.domain.value.LoginType;
 import com.example.user.domain.user.domain.value.Role;
 import com.example.user.domain.user.presentation.dto.res.UserResponse;
-import com.example.user.domain.user.service.CommandUserService;
+import com.example.user.domain.user.service.MutationUserService;
 import com.example.user.domain.user.service.QueryUserService;
 import com.example.user.global.config.properties.auth.NaverProperties;
 import com.example.user.global.feign.auth.naver.NaverAuthClient;
@@ -26,7 +26,7 @@ public class NaverAuthService {
     private final NaverProperties naverProperties;
     private final NaverAuthClient naverAuthClient;
     private final NaverInformationClient naverInformationClient;
-    private final CommandUserService commandUserService;
+    private final MutationUserService mutationUserService;
     private final QueryUserService queryUserService;
     private final JwtUtils jwtUtils;
 
@@ -48,7 +48,7 @@ public class NaverAuthService {
         UserResponse user = queryUserService.getUserByEmail(email);
 
         if (user == null) {
-            commandUserService.saveOAuth(
+            mutationUserService.saveOAuth(
                     User.oauthUserCreateBuilder()
                             .email(email)
                             .loginType(LoginType.GOOGLE)

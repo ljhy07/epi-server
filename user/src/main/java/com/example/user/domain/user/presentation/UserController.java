@@ -3,7 +3,7 @@ package com.example.user.domain.user.presentation;
 import com.example.user.domain.user.presentation.dto.req.UserPasswordUpdateInput;
 import com.example.user.domain.user.presentation.dto.req.UserUpdateInput;
 import com.example.user.domain.user.presentation.dto.res.UserResponse;
-import com.example.user.domain.user.service.CommandUserService;
+import com.example.user.domain.user.service.MutationUserService;
 import com.example.user.domain.user.service.QueryUserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.graphql.data.method.annotation.Argument;
@@ -17,7 +17,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class UserController {
 
-    private final CommandUserService commandUserService;
+    private final MutationUserService mutationUserService;
     private final QueryUserService queryUserService;
 
     @QueryMapping
@@ -48,19 +48,19 @@ public class UserController {
     public UserResponse updateUser(
             @Argument(name = "userUpdateInput") UserUpdateInput userUpdateInput
     ){
-        return commandUserService.update(userUpdateInput);
+        return mutationUserService.update(userUpdateInput);
     }
 
     @MutationMapping
     public UserResponse updateUserPassword(
             @Argument(name = "userPasswordUpdateInput") UserPasswordUpdateInput userPasswordUpdateInput
     ){
-        return commandUserService.updatePassword(userPasswordUpdateInput);
+        return mutationUserService.updatePassword(userPasswordUpdateInput);
     }
 
     @MutationMapping
     public UserResponse deleteUser(){
-        return commandUserService.delete();
+        return mutationUserService.delete();
     }
 
 

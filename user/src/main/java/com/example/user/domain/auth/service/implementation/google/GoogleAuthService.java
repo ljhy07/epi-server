@@ -6,7 +6,7 @@ import com.example.user.domain.user.domain.User;
 import com.example.user.domain.user.domain.value.LoginType;
 import com.example.user.domain.user.domain.value.Role;
 import com.example.user.domain.user.presentation.dto.res.UserResponse;
-import com.example.user.domain.user.service.CommandUserService;
+import com.example.user.domain.user.service.MutationUserService;
 import com.example.user.domain.user.service.QueryUserService;
 import com.example.user.global.feign.auth.google.GoogleInformationClient;
 import com.example.user.global.feign.auth.google.dto.res.GoogleInformationResponse;
@@ -20,7 +20,7 @@ import org.springframework.transaction.annotation.Transactional;
 public class GoogleAuthService {
 
     private final GoogleInformationClient googleInformationClient;
-    private final CommandUserService commandUserService;
+    private final MutationUserService mutationUserService;
     private final QueryUserService queryUserService;
     private final JwtUtils jwtUtils;
 
@@ -33,7 +33,7 @@ public class GoogleAuthService {
         UserResponse user = queryUserService.getUserByEmail(email);
 
         if (user == null) {
-            commandUserService.saveOAuth(
+            mutationUserService.saveOAuth(
                     User.oauthUserCreateBuilder()
                         .email(email)
                         .loginType(LoginType.GOOGLE)

@@ -21,7 +21,7 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 @Transactional
 @RequiredArgsConstructor
-public class CommandAuthService {
+public class MutationAuthService {
 
     private final JwtUtils jwtUtils;
     private final UserReader userReader;
