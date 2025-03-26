@@ -1,0 +1,49 @@
+spring:
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: ${MAIL_USER}
+    password: ${MAIL_APP_PASSWORD}
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+            required: true
+          connectiontimeout: 5000
+          timeout: 5000
+          writetimeout: 5000
+      auth-code-expiration-millis: 1800000  # 30 * 60 * 1000 == 30?
+
+  jwt:
+#    secret: ${JWT_SECRET_KEY}
+    private-key-path: ${JWT_PRIVATE_KEY_PATH}
+    public-key-path: ${JWT_PUBLIC_KEY_PATH}
+    prefix: Bearer
+    header: Authorization
+    access:
+      expiration: 3600000 # 1시간
+    refresh:
+      expiration: 2592000000 # 30일
+
+  auth:
+    google:
+      base-url: ${GOOGLE_BASE_URL}
+      redirect-url: ${GOOGLE_REDIRECT_URI}
+      client-id: ${GOOGLE_CLIENT_ID}
+      secret-id: ${GOOGLE_CLIENT_SECRET}
+    naver:
+      base-url: ${NAVER_BASE_URL}
+      redirect-url: ${NAVER_REDIRECT_URI}
+      client-id: ${NAVER_CLIENT_ID}
+      secret-id: ${NAVER_CLIENT_SECRET}
+    kakao:
+      base-url: ${KAKAO_BASE_URL}
+      redirect-url: ${KAKAO_REDIRECT_URI}
+      client-id: ${KAKAO_CLIENT_ID}
+      secret-id: ${KAKAO_CLIENT_SECRET}
+
+server:
+#  url: "http://localhost:8080"
+  redirect: "http://localhost:3000"
