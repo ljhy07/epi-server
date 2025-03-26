@@ -48,7 +48,6 @@ dependencies {
 
 //    implementation 'com.netflix.graphql.dgs:graphql-dgs-spring-graphql-starter'
     implementation 'org.springframework.boot:spring-boot-starter-graphql'
-    implementation 'name.nkonev.multipart-spring-graphql:multipart-spring-graphql'
     implementation 'com.graphql-java:graphql-java-extended-scalars'
     implementation 'org.springframework.boot:spring-boot-starter-mail'
     implementation 'org.springframework.boot:spring-boot-starter-websocket'
