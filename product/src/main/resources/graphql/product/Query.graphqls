@@ -1,0 +1,5 @@
+type Query {
+    getProduct(queryProductInput: QueryProductInput): Product
+    getProducts(queryProductInput: QueryProductInput): [Product]
+    getProductsByProductName(queryProductInput: QueryProductInput): [Product]
+}
