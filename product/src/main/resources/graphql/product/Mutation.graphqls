@@ -1,0 +1,5 @@
+type Mutation {
+    createProduct(createProductInput: CreateProductInput): Product
+    updateProduct(updateProductInput: UpdateProductInput): Product
+    deleteProduct(deleteProductInput: DeleteProductInput): Product
+}
