@@ -1,0 +1,6 @@
+input UpdateProductInput {
+    productId: ID
+    productName: String
+    productPrice: ID
+    productDescription: String
+}
