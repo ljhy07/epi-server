@@ -1,12 +1,12 @@
-package com.example.product.product.presentation;
+package com.example.product.domain.product.presentation;
 
-import com.example.product.product.domain.Product;
-import com.example.product.product.presentation.dto.req.CreateProductInput;
-import com.example.product.product.presentation.dto.req.DeleteProductInput;
-import com.example.product.product.presentation.dto.req.QueryProductInput;
-import com.example.product.product.presentation.dto.req.UpdateProductInput;
-import com.example.product.product.service.MutationProductService;
-import com.example.product.product.service.QueryProductService;
+import com.example.product.domain.product.domain.Product;
+import com.example.product.domain.product.presentation.dto.req.CreateProductInput;
+import com.example.product.domain.product.presentation.dto.req.DeleteProductInput;
+import com.example.product.domain.product.presentation.dto.req.QueryProductInput;
+import com.example.product.domain.product.presentation.dto.req.UpdateProductInput;
+import com.example.product.domain.product.service.MutationProductService;
+import com.example.product.domain.product.service.QueryProductService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.graphql.data.method.annotation.Argument;
 import org.springframework.graphql.data.method.annotation.MutationMapping;

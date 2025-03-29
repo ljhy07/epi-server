@@ -1,4 +1,4 @@
-package com.example.product.product.domain;
+package com.example.product.domain.product.domain;
 
 import jakarta.persistence.*;
 import lombok.AccessLevel;

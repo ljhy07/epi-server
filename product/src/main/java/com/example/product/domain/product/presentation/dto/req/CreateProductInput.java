@@ -1,4 +1,4 @@
-package com.example.product.product.presentation.dto.req;
+package com.example.product.domain.product.presentation.dto.req;
 
 public record CreateProductInput(
         Long storeId,

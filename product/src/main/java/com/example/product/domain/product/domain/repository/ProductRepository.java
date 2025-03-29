@@ -1,6 +1,6 @@
-package com.example.product.product.domain.repository;
+package com.example.product.domain.product.domain.repository;
 
-import com.example.product.product.domain.Product;
+import com.example.product.domain.product.domain.Product;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;

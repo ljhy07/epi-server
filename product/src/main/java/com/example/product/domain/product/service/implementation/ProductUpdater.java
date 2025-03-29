@@ -1,7 +1,7 @@
-package com.example.product.product.service.implementation;
+package com.example.product.domain.product.service.implementation;
 
-import com.example.product.product.domain.Product;
-import com.example.product.product.domain.repository.ProductRepository;
+import com.example.product.domain.product.domain.Product;
+import com.example.product.domain.product.domain.repository.ProductRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

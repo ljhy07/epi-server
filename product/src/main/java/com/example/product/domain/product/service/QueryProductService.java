@@ -1,8 +1,8 @@
-package com.example.product.product.service;
+package com.example.product.domain.product.service;
 
-import com.example.product.product.domain.Product;
-import com.example.product.product.presentation.dto.req.QueryProductInput;
-import com.example.product.product.service.implementation.ProductReader;
+import com.example.product.domain.product.domain.Product;
+import com.example.product.domain.product.presentation.dto.req.QueryProductInput;
+import com.example.product.domain.product.service.implementation.ProductReader;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
