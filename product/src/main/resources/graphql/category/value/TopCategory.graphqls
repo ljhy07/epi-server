@@ -1,0 +1,17 @@
+enum TopCategory {
+    Fashion,
+    Beauty,
+    ChildbirthAndInfant,
+    Food,
+    Kitchenware,
+    HouseholdGoods,
+    HomeInterior,
+    HomeAppliancesAndDigital,
+    SportsAndLeisure,
+    CarSupplies,
+    BooksAndMusicAndDVD,
+    ToysAndHobbies,
+    StationeryAndOffice,
+    PetSupplies,
+    HealthAndHealthFood
+}
