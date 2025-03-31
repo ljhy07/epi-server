@@ -9,7 +9,6 @@ import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import org.apache.kafka.streams.processor.To;
 
 @Getter
 @Entity(name = "category")
