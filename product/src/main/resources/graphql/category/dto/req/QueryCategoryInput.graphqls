@@ -1,0 +1,5 @@
+input QueryCategoryInput {
+    categoryId: ID
+    productId: ID
+    topCategory: TopCategory
+}
