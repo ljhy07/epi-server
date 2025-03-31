@@ -1,0 +1,6 @@
+extend type Query {
+    getCategoryById(queryCategoryInput: QueryCategoryInput): Category
+    getCategoryByProduct(queryCategoryInput: QueryCategoryInput): Category
+    getAllCategories(queryCategoryInput: QueryCategoryInput): [Category]
+    getAllProductsByCategory(queryCategoryInput: QueryCategoryInput): [Category]
+}
