@@ -1,0 +1,6 @@
+type Category {
+    category: ID
+    productId: ID
+    topCategory: TopCategory
+    normalCategory: String
+}
