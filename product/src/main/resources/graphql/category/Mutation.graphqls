@@ -1,0 +1,5 @@
+extend type Mutation {
+    createCategory(createCategoryInput: CreateCategoryInput): Category
+    updateCategory(updateCategoryInput: UpdateCategoryInput): Category
+    deleteCategory(deleteCategoryInput: DeleteCategoryInput): Category
+}
