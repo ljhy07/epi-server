@@ -1,0 +1,5 @@
+type Cart {
+    cartId: ID
+    userId: ID
+    productId: ID
+}
