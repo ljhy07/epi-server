@@ -1,0 +1,4 @@
+input CartMutationInput {
+    cartId: ID
+    productId: ID
+}
