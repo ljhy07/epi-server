@@ -62,7 +62,7 @@ public class SecurityConfig {
 
         http
                 .authorizeHttpRequests((auth) -> auth
-                        .requestMatchers("/graphql/**","/graphiql/**").permitAll()
+                        .requestMatchers("/graphql/**","/graphiql/**", "/favicon.ico").permitAll()
                         .anyRequest().hasRole("USER"));
 
         http
