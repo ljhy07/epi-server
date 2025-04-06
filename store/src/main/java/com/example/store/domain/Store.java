@@ -34,7 +34,7 @@ public class Store {
     }
 
     @Builder(builderMethodName = "updateStoreBuilder")
-    public Store(String storeName, String storeAddress, String storeDescription, Long storeId) {
+    public Store(String storeName, String storeAddress, String storeDescription) {
         this.storeName = storeName;
         this.storeAddress = storeAddress;
         this.storeDescription = storeDescription;
