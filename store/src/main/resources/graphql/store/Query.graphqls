@@ -1,0 +1,5 @@
+type Query {
+    getStore(storeInput: StoreInput): Store
+    getStoreByUser(storeInput: StoreInput): Store
+    getStoresByName(storeInput: StoreInput): [Store]
+}
