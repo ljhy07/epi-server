@@ -1,0 +1,6 @@
+input StoreInput {
+    storeId: ID
+    storeName: String
+    storeAddress: String
+    storeDescription: String
+}
