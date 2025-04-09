@@ -1,0 +1,7 @@
+type Store {
+    storeId: ID
+    userId: ID
+    storeName: String
+    storeAddress: String
+    storeDescription: String
+}
