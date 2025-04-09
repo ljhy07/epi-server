@@ -1,0 +1,5 @@
+type Mutation {
+    createStore(storeInput: StoreInput): Store
+    updateStore(storeInput: StoreInput): Store
+    deleteStore: Store
+}
