@@ -1,0 +1,5 @@
+type Mutation {
+    createReview(reviewInput: ReviewInput): Review
+    updateReview(reviewInput: ReviewInput): Review
+    deleteReview(reviewInput: ReviewInput): Review
+}
