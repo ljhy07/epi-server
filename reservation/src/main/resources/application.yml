@@ -1,0 +1,44 @@
+spring:
+  application:
+    name: "reservation"
+
+  config:
+    import:
+      - optional:file:env/reservation.env[.properties]
+
+  profiles:
+    active: auth
+
+  jpa:
+    show-sql: true
+    generate-ddl: true
+    hibernate:
+      ddl-auto: update
+
+  #  data:
+  #    cassandra:
+  #      contact-points: cassandra-db
+  #      port: 9042
+  #      keyspace-name: my_keyspace
+  #      username: cassandra
+  #      password: cassandra
+  #      schema-action: CREATE_IF_NOT_EXISTS
+
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: ${DB_URL}
+    username: ${DB_USER}
+    password: ${DB_PASSWORD}
+
+  graphql:
+    graphiql:
+      enabled: true
+    schema:
+      printer:
+        enabled: true
+
+logging:
+  level:
+    org:
+      springframework:
+        security: debug
