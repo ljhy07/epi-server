@@ -1,10 +1,10 @@
 spring:
   application:
-    name: "user"
+    name: "cart"
 
   config:
     import:
-      - optional:file:env/user.env[.properties]
+      - optional:file:env/cart.env[.properties]
 
   profiles:
     active: auth
