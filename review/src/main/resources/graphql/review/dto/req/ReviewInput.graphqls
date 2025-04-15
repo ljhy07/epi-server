@@ -1,0 +1,6 @@
+input ReviewInput {
+    reviewId: ID
+    productId: ID
+    rating: Int
+    comment: String
+}
