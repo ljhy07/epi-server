@@ -1,0 +1,5 @@
+type Query {
+    getReviewById(reviewInput: ReviewInput): Review
+    getReviewByUser(reviewInput: ReviewInput): [Review]
+    getReviewByProduct(reviewInput: ReviewInput): [Review]
+}
