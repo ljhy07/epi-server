@@ -1,0 +1,5 @@
+type Mutation{
+    createReservation(reservationInput: ReservationInput): Reservation
+    updateReservation(reservationInput: ReservationInput): Reservation
+    deleteReservation(reservationInput: ReservationInput): Reservation
+}
