@@ -1,0 +1,5 @@
+type Query {
+    getReservation(reservationInput: ReservationInput): Reservation
+    getReservationsByUser: [Reservation]
+    getReservationsByProduct(reservationInput: ReservationInput): [Reservation]
+}
