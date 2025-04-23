@@ -1,0 +1,5 @@
+input ReservationInput {
+    productId: ID
+    paymentStatus: PaymentStatus
+    date: Date
+}
