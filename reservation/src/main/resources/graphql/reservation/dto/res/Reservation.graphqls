@@ -1,0 +1,7 @@
+type Reservation {
+    reservationId: ID
+    userId: ID
+    productId: ID
+    paymentStatus: PaymentStatus
+    date: Date
+}
