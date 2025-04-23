@@ -13,13 +13,9 @@ public enum PaymentStatus{
         this.paymentStatus = paymentStatus;
     }
 
-    public String PaymentStatus() {
-        return paymentStatus;
-    }
-
     public static PaymentStatus fromValue(String value) {
         for (PaymentStatus paymentStatus : PaymentStatus.values()) {
-            if (paymentStatus.name().equalsIgnoreCase(value) || paymentStatus.PaymentStatus().equalsIgnoreCase(value)) {
+            if (paymentStatus.name().equalsIgnoreCase(value) || paymentStatus.getPaymentStatus().equalsIgnoreCase(value)) {
                 return paymentStatus;
             }
         }
