@@ -2,7 +2,37 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/Store.iml" filepath="$PROJECT_DIR$/.idea/Store.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/epi-server.iml" filepath="$PROJECT_DIR$/.idea/modules/epi-server.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/applications/cart/epi-server.applications.cart.iml" filepath="$PROJECT_DIR$/.idea/modules/applications/cart/epi-server.applications.cart.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/applications/cart/epi-server.applications.cart.main.iml" filepath="$PROJECT_DIR$/.idea/modules/applications/cart/epi-server.applications.cart.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/applications/cart/epi-server.applications.cart.test.iml" filepath="$PROJECT_DIR$/.idea/modules/applications/cart/epi-server.applications.cart.test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/applications/event/epi-server.applications.event.iml" filepath="$PROJECT_DIR$/.idea/modules/applications/event/epi-server.applications.event.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/applications/event/epi-server.applications.event.main.iml" filepath="$PROJECT_DIR$/.idea/modules/applications/event/epi-server.applications.event.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/applications/event/epi-server.applications.event.test.iml" filepath="$PROJECT_DIR$/.idea/modules/applications/event/epi-server.applications.event.test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/applications/epi-server.applications.main.iml" filepath="$PROJECT_DIR$/.idea/modules/applications/epi-server.applications.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/applications/pay/epi-server.applications.pay.iml" filepath="$PROJECT_DIR$/.idea/modules/applications/pay/epi-server.applications.pay.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/applications/pay/epi-server.applications.pay.main.iml" filepath="$PROJECT_DIR$/.idea/modules/applications/pay/epi-server.applications.pay.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/applications/pay/epi-server.applications.pay.test.iml" filepath="$PROJECT_DIR$/.idea/modules/applications/pay/epi-server.applications.pay.test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/applications/product/epi-server.applications.product.iml" filepath="$PROJECT_DIR$/.idea/modules/applications/product/epi-server.applications.product.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/applications/product/epi-server.applications.product.main.iml" filepath="$PROJECT_DIR$/.idea/modules/applications/product/epi-server.applications.product.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/applications/product/epi-server.applications.product.test.iml" filepath="$PROJECT_DIR$/.idea/modules/applications/product/epi-server.applications.product.test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/applications/reservation/epi-server.applications.reservation.iml" filepath="$PROJECT_DIR$/.idea/modules/applications/reservation/epi-server.applications.reservation.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/applications/reservation/epi-server.applications.reservation.main.iml" filepath="$PROJECT_DIR$/.idea/modules/applications/reservation/epi-server.applications.reservation.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/applications/reservation/epi-server.applications.reservation.test.iml" filepath="$PROJECT_DIR$/.idea/modules/applications/reservation/epi-server.applications.reservation.test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/applications/review/epi-server.applications.review.iml" filepath="$PROJECT_DIR$/.idea/modules/applications/review/epi-server.applications.review.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/applications/review/epi-server.applications.review.main.iml" filepath="$PROJECT_DIR$/.idea/modules/applications/review/epi-server.applications.review.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/applications/review/epi-server.applications.review.test.iml" filepath="$PROJECT_DIR$/.idea/modules/applications/review/epi-server.applications.review.test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/applications/store/epi-server.applications.store.iml" filepath="$PROJECT_DIR$/.idea/modules/applications/store/epi-server.applications.store.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/applications/store/epi-server.applications.store.main.iml" filepath="$PROJECT_DIR$/.idea/modules/applications/store/epi-server.applications.store.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/applications/store/epi-server.applications.store.test.iml" filepath="$PROJECT_DIR$/.idea/modules/applications/store/epi-server.applications.store.test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/applications/epi-server.applications.test.iml" filepath="$PROJECT_DIR$/.idea/modules/applications/epi-server.applications.test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/applications/user/epi-server.applications.user.iml" filepath="$PROJECT_DIR$/.idea/modules/applications/user/epi-server.applications.user.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/applications/user/epi-server.applications.user.main.iml" filepath="$PROJECT_DIR$/.idea/modules/applications/user/epi-server.applications.user.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/applications/user/epi-server.applications.user.test.iml" filepath="$PROJECT_DIR$/.idea/modules/applications/user/epi-server.applications.user.test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/epi-server.main.iml" filepath="$PROJECT_DIR$/.idea/modules/epi-server.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/epi-server.test.iml" filepath="$PROJECT_DIR$/.idea/modules/epi-server.test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/utils/epi-server.utils.main.iml" filepath="$PROJECT_DIR$/.idea/modules/utils/epi-server.utils.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/utils/epi-server.utils.test.iml" filepath="$PROJECT_DIR$/.idea/modules/utils/epi-server.utils.test.iml" />
     </modules>
   </component>
 </project>

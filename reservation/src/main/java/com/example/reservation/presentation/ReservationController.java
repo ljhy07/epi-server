@@ -8,6 +8,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.graphql.data.method.annotation.Argument;
 import org.springframework.graphql.data.method.annotation.MutationMapping;
 import org.springframework.graphql.data.method.annotation.QueryMapping;
+import org.springframework.messaging.handler.annotation.Header;
 import org.springframework.stereotype.Controller;
 
 import java.util.List;
@@ -21,47 +22,54 @@ public class ReservationController {
 
     @MutationMapping
     public Reservation createReservation(
+            @Header String accessToken,
             @Argument(name = "reservationInput")
             ReservationInput reservationInput
     ) {
-        return mutationReservationService.create(reservationInput);
+        return mutationReservationService.create(accessToken, reservationInput);
     }
 
     @MutationMapping
     public Reservation updateReservation(
+            @Header String accessToken,
             @Argument(name = "reservationInput")
             ReservationInput reservationInput
     ) {
-        return mutationReservationService.update(reservationInput);
+        return mutationReservationService.update(accessToken, reservationInput);
     }
 
     @MutationMapping
     public Reservation deleteReservation(
+            @Header String accessToken,
             @Argument(name = "reservationInput")
             ReservationInput reservationInput
     ) {
-        return mutationReservationService.delete(reservationInput);
+        return mutationReservationService.delete(accessToken, reservationInput);
     }
 
     @QueryMapping
     public Reservation getReservation(
+            @Header String accessToken,
             @Argument(name = "reservationInput")
             ReservationInput reservationInput
     ) {
-        return queryReservationService.getReservation(reservationInput);
+        return queryReservationService.getReservation(accessToken, reservationInput);
     }
 
     @QueryMapping
-    public List<Reservation> getReservationsByUser(){
-        return queryReservationService.getReservationsByUser();
+    public List<Reservation> getReservationsByUser(
+            @Header String accessToken
+    ){
+        return queryReservationService.getReservationsByUser(accessToken);
     }
 
     @QueryMapping
     public List<Reservation> getReservationsByProduct(
+            @Header String accessToken,
             @Argument(name = "reservationInput")
             ReservationInput reservationInput
     ){
-        return queryReservationService.getReservationsByProductId(reservationInput);
+        return queryReservationService.getReservationsByProductId(accessToken, reservationInput);
     }
 
 }

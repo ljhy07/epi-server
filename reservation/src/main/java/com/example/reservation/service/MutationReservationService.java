@@ -1,6 +1,7 @@
 package com.example.reservation.service;
 
 import com.example.reservation.domain.Reservation;
+import com.example.reservation.global.jwt.util.JwtUtils;
 import com.example.reservation.presentation.dto.req.ReservationInput;
 import com.example.reservation.service.implementation.ReservationCreator;
 import com.example.reservation.service.implementation.ReservationDeleter;
@@ -20,8 +21,9 @@ public class MutationReservationService {
     private final ReservationUpdater reservationUpdater;
     private final ReservationDeleter reservationDeleter;
     private final ReservationReader reservationReader;
+    private final JwtUtils jwtUtils;
 
-    public Reservation create(ReservationInput reservationInput) {
+    public Reservation create(String accessToken, ReservationInput reservationInput) {
         Long userId = null;
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
@@ -35,8 +37,8 @@ public class MutationReservationService {
         );
     }
 
-    public Reservation update(ReservationInput reservationInput) {
-        Long userId = null;
+    public Reservation update(String accessToken, ReservationInput reservationInput) {
+        Long userId = jwtUtils.getTokenSub(accessToken);
 
         return reservationUpdater.update(
                 reservationReader.findById(reservationInput.productId()),
@@ -44,10 +46,17 @@ public class MutationReservationService {
         );
     }
 
-    public Reservation delete(ReservationInput reservationInput) {
-        return reservationDeleter.delete(
-                reservationReader.findById(reservationInput.productId())
-        );
+    public Reservation delete(String accessToken, ReservationInput reservationInput) {
+        Long userId = jwtUtils.getTokenSub(accessToken);
+        Reservation reservation = reservationReader.findById(reservationInput.productId());
+
+        if (userId.equals(reservation.getUserId())) {
+            return reservationDeleter.delete(
+                    reservation
+            );
+        } else {
+            return null;
+        }
     }
 
 }
