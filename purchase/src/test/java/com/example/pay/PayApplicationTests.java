@@ -1,10 +1,10 @@
-package com.example.purchase;
+package com.example.pay;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class PurchaseApplicationTests {
+class PayApplicationTests {
 
     @Test
     void contextLoads() {

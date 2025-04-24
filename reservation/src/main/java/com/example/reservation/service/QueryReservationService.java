@@ -21,7 +21,7 @@ public class QueryReservationService {
     }
 
     public List<Reservation> getReservationsByUser(String accessToken) {
-        Long userId = jwtUtils.getTokenSub();
+        Long userId = jwtUtils.getTokenSub(accessToken);
         return reservationReader.findAllByUser(userId);
     }
 
