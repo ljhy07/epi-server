@@ -7,7 +7,7 @@ spring:
       - optional:file:env/user.env[.properties]
 
   profiles:
-    active: auth
+    active: auth, eureka
 
   jpa:
     show-sql: true
