@@ -1,0 +1,44 @@
+server:
+  port: 8080
+
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://localhost:8761/eureka
+
+spring:
+  application:
+    name: api-gateway
+  cloud:
+    gateway:
+      default-filters:
+            - name: GlobalFilter
+              args:
+                baseMessage: Spring Cloud Gateway Global Filter
+                preLogger: true
+                postLogger: true
+      routes:
+            - id: user
+              uri: lb://user
+              predicates:
+                - Path=/user
+              filters:
+                - name: RewritePathFilter
+                - name: LoggingFilter
+                  args:
+                    baseMessage: user-server
+                    preLogger: true
+                    postLogger: true
+            - id: store
+              uri: lb:store
+              predicates:
+                - Path=/store
+              filters:
+                - name: RewritePathFilter
+                - name: LoggingFilter
+                  args:
+                    baseMessage: store-server
+                    preLogger: true
+                    postLogger: true
