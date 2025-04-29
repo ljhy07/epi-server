@@ -1,9 +1,10 @@
-package com.example.apigateway;
+package com.apigateway;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 
-@EnableEurekaServe
+@EnableDiscoveryClient
 @SpringBootApplication
 public class ApiGatewayApplication {
 
