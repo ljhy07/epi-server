@@ -1,6 +1,6 @@
 package com.example.user.global.exception;
 
-import com.example.user.domain.email.exception.value.EmailVerificationStatus;
+import com.example.user.application.email.exception.value.EmailVerificationStatus;
 import com.example.user.global.exception.mail.UserMailException;
 import com.example.user.global.exception.security.UserSecurityException;
 import com.example.user.global.log.util.LogUtils;

@@ -1,7 +1,7 @@
 package com.example.user.global.auth.util;
 
-import com.example.user.domain.user.domain.User;
-import com.example.user.domain.user.service.implementation.UserReader;
+import com.example.user.application.user.domain.User;
+import com.example.user.application.user.service.implementation.UserReader;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;

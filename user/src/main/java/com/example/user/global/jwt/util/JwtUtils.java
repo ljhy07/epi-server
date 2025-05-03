@@ -1,12 +1,12 @@
 package com.example.user.global.jwt.util;
 
-import com.example.user.domain.auth.domain.Refresh;
-import com.example.user.domain.auth.presentation.dto.res.Token;
-import com.example.user.domain.auth.service.CustomUserDetailsService;
-import com.example.user.domain.auth.service.dto.CustomUserDetails;
-import com.example.user.domain.auth.service.implementation.AuthCreator;
-import com.example.user.domain.user.domain.User;
-import com.example.user.domain.user.service.implementation.UserReader;
+import com.example.user.application.auth.domain.Refresh;
+import com.example.user.application.auth.presentation.dto.res.Token;
+import com.example.user.application.auth.service.CustomUserDetailsService;
+import com.example.user.application.auth.service.dto.CustomUserDetails;
+import com.example.user.application.auth.service.implementation.AuthCreator;
+import com.example.user.application.user.domain.User;
+import com.example.user.application.user.service.implementation.UserReader;
 import com.example.user.global.jwt.exception.ExpiredTokenException;
 import com.example.user.global.jwt.exception.InvalidTokenException;
 import io.jsonwebtoken.Claims;
