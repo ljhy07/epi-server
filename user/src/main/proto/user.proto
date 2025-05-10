@@ -1,0 +1,24 @@
+syntax = "proto3";
+
+// 여기에 내가 원하는 패키지명을 적는다. 실제 프로젝트 패키지를 잘 보면서 수정하자.
+option java_package = "com.example.user.global.grpc";
+option java_outer_classname = "UserProto";
+
+service UserService {
+  rpc getUser (UserRequest) returns (UserResponse);
+}
+
+// 유저 생성 요청 객체
+message UserRequest {
+  int64 id = 1;
+  string accessToken = 2;
+  string email = 3;
+}
+
+// 유저 생성 응답
+message UserResponse {
+  int64 id = 1;
+  string name = 2;
+  string email = 3;
+  string phone = 4;
+}
